@@ -9,6 +9,4 @@ class Exam extends Model
     protected $table="exams";
     protected $fillable=['title','exam_description','exam_date','exam_mark'];
 
-
-
 }

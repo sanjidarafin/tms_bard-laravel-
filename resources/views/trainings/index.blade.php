@@ -1,4 +1,4 @@
-@extends('trainings.master')
+@extends('admin.layouts.master')
 @section('title', 'View Information')
 
     <style>
@@ -36,30 +36,9 @@
                         @if ($trainings->isEmpty())
                             <p> There is no available trainings.</p>
                         @else
-                            <label><h4>Ongoing Training</h4></label><hr>
                             <div>
                                 @foreach($trainings as $training)
-                                    @if(date('Y-m-d')>=$training->start_date && date('Y-m-d')<=$training->end_date )
-                                        <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@show', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
-                                @endforeach
-                            </div>
-
-                            <label><h4>Upcoming Training</h4></label><hr>
-                            <div>
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')<$training->start_date)
-                                        <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@show', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
-                                @endforeach
-                            </div>
-
-                            <label><h4>Past Training</h4></label><hr>
-                            <div class="inline">
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')>$training->end_date)
-                                        <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@show', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
+                                    <h5><a href="{!! action('TrainingsController@show', $training->id) !!}">{!! $training->training_name !!}</a><h6><a href="{!! action('TrainingsController@statusUpdate', $training->id) !!}" class="btn btn-info" style="float: right;background-color: {!! $training->status ? "navy":"red" !!}">{!! $training->status ? "Active":"Inactive" !!}</a></h6></h5>
                                 @endforeach
                             </div>
                         @endif

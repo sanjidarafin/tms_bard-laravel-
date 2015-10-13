@@ -118,11 +118,77 @@
                         <i class="fa fa-dashboard"></i> <span>HealthInfo</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="create"><i class="fa fa-circle-o"></i> Create Info</a></li>
+                        <li class="active"><a href="{{ URL::to('/healthCreate') }}"><i class="fa fa-circle-o"></i> Create Info</a></li>
                         <li class="active"><a href="adminHealthInfos"><i class="fa fa-circle-o"></i> All Health Info</a></li>
 
                     </ul>
                 </li>
+                {{--Following created by localhost--}}
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-users"></i> <span>Clients</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ URL::to('admin/clients') }}"><i class="fa fa-circle-o"></i>All Clients</a></li>
+                        <li class="active"><a href="{{ URL::to('/clients/create') }}"><i class="fa fa-circle-o"></i>Create a Clients</a></li>
+                        <li class="active"><a href="{{ URL::to('/clients/create_newsletter') }}"><i class="fa fa-circle-o"></i>Send Newsletter</a></li>
+
+                    </ul>
+                </li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ URL::to('/user/all') }}"><i class="fa fa-circle-o"></i>All Users</a></li>
+                        <li class="active"><a href="{{ URL::to('/user/registration') }}"><i class="fa fa-circle-o"></i>Create User</a></li>
+                    </ul>
+                </li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i> <span>Course</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ URL::to('/courses') }}"><i class="fa fa-circle-o"></i>All Coures</a></li>
+                        <li class="active"><a href="{{ URL::to('/create_course') }}"><i class="fa fa-circle-o"></i>Create Course</a></li>
+                    </ul>
+                </li>
+
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Trainings</span>
+                        <span class="label label-primary pull-right">4</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ URL::to('/training_info') }}"><i class="fa fa-circle-o"></i>Create Training</a></li>
+                        <li class="active"><a href="{{ URL::to('/trainings') }}"><i class="fa fa-circle-o"></i> Training List</a></li>
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Testimonial</span>
+                                <span class="label label-primary pull-right">4</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="{{ URL::to('/create_testimonial') }}"><i class="fa fa-circle-o"></i>Create Testimonial</a></li>
+                                <li><a href="{{ URL::to('/testimonials') }}"><i class="fa fa-circle-o"></i> Testimonial List</a></li>
+                            </ul>
+                        </li>
+                        <li class="active treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>FAQs</span>
+                                <span class="label label-primary pull-right">4</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ URL::to('/create_frequently_asked_question') }}"><i class="fa fa-circle-o"></i> Create FAQs</a></li>
+                                <li><a href="{{ URL::to('/frequently_asked_questions') }}"><i class="fa fa-circle-o"></i> FAQs List</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
@@ -154,6 +220,17 @@
                         <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
                     </ul>
                 </li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Announcement</span>
+                        <span class="label label-primary pull-right">4</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ URL::to('/announcement_create') }}"><i class="fa fa-circle-o"></i>Create Announcement</a></li>
+                        <li><a href="{{ URL::to('/announcements') }}"><i class="fa fa-circle-o"></i> Announcement List</a></li>
+                    </ul>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -166,7 +243,6 @@
         <!-- Main content -->
         <section class="content">
             @yield('content')
-
         </section><!-- /.content -->
 
 
@@ -339,6 +415,12 @@
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
+    <footer class = "main-footer">
+        <div class="col-md-12">
+             <strong>Copyright &copy;  <a href="http://bard.com.bd">BARD</a>.</strong> All rights reserved.
+        </div>
+    </footer>
+
 </div><!-- ./wrapper -->
 
 <!-- jQuery 2.1.4 -->

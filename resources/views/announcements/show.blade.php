@@ -1,4 +1,4 @@
-@extends('trainings.master')
+@extends('admin.layouts.master')
 @section('title', 'View a announcement')
     <style>
         label{

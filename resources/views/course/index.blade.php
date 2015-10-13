@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('admin.layouts.master')
 @section('title', 'View all courses')
 @section('content')
 

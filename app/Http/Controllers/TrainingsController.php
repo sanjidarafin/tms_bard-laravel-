@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Testimonial;
 use DateTime;
 use Carbon\Carbon;
+use App\Course;
 use App\Training;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -23,6 +25,11 @@ class TrainingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function publicIndex()
+    {
+        $trainings = Training::where('status',1)->get();
+        return view('trainings.public_training_pages.index', compact('trainings'));
+    }
     public function index()
     {
         $trainings = Training::all();
@@ -66,12 +73,12 @@ class TrainingsController extends Controller
             'description'=>$request->get('description'),
             'applying_information'=>$request->get('applying_information'),
             'objectives'=>$request->get('objectives'),
-            'courses'=>$request->get('courses'),
+            //'courses'=>$request->get('courses'),
             'start_date'=>$request->get('start_date'),
             'end_date'=>$request->get('end_date'),
             'provided_resources'=>$request->get('provided_resources'),
             'accommodation'=>$request->get('accommodation'),
-            'testimonial'=>$request->get('testimonial').'<br> Author Name : '.$request->get('name'),
+            //'testimonial'=>$request->get('testimonial').'<br> Author Name : '.$request->get('name'),
             'daily_schedule'=>$request->get('daily_schedule'),
             'fees_structure'=>$request->get('fees_structure'),
             'responsible_person'=>$request->get('responsible_person'),
@@ -87,10 +94,20 @@ class TrainingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         $training = Training::whereid($id)->firstOrFail();
-        return view('trainings.show', compact('training'));
+        $courses=Course::wheretraining_id($id)->get();
+        $testimonials=Testimonial::wheretraining_id($id)->get();
+        return view('trainings.show', compact('training'),compact('courses'))->with('testimonials',$testimonials);
+    }
+    public function publicShow($id)
+    {
+        $training = Training::whereid($id)->firstOrFail();
+        $courses=Course::wheretraining_id($id)->get();
+        $testimonials=Testimonial::wheretraining_id($id)->get();
+        return view('trainings.public_training_pages.show', compact('training'),compact('courses'))->with('testimonials',$testimonials);
     }
 
     /**
@@ -132,6 +149,10 @@ class TrainingsController extends Controller
         Training::where('id',$id)->update($training->toArray());
         return redirect(action('TrainingsController@edit', $training->id))->with('status', 'Information  has been updated!');
     }
+    public function statusUpdate($id){
+        $training =  Training::where('id',$id)->firstOrFail();
+        $training->status =1;
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -141,11 +162,8 @@ class TrainingsController extends Controller
      */
     public function destroy($id)
     {
-        //$training = Training::wheretraining_id($training_slug)->firstOrFail();
-        //$training = Training::find($training_slug);
-        //$training = Training::where('training_id', '=', $training_id) ->first();
-        //return $training;
-        //$training->delete();
-        //return redirect('/trainings')->with('status', 'The training information has been deleted!');
+        $training = Training::whereid($id)->firstOrFail();
+        $training->delete();
+        return redirect('/trainings')->with('status', 'The training information has been deleted!');
     }
 }

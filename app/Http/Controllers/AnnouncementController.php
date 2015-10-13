@@ -17,10 +17,17 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $limit=3;
-        $announcement = Announcement::orderBy('created_at','desc')->limit($limit)->get();
+        //$limit=3;
+        //$announcement = Announcement::orderBy('created_at','desc')->limit($limit)->get();
+        $announcement = Announcement::orderBy('created_at','desc')->get();
         return view('announcements.index', compact('announcement'));
     }
+    /*public function publicIndex()
+    {
+        $limit=3;
+        $announcement = Announcement::orderBy('created_at','desc')->limit($limit)->get();
+        return view('public_announcement_pages.index', compact('announcement'));
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -62,6 +69,11 @@ class AnnouncementController extends Controller
         return view('announcements.show', compact('announcement'));
     }
 
+    public function publicShow($id)
+    {
+        $announcement = Announcement::whereid($id)->firstOrFail();
+        return view('announcements.public_announcement_pages.show', compact('announcement'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -100,9 +112,6 @@ class AnnouncementController extends Controller
     public function destroy($id)
     {
         $announcement = Announcement::whereid($id)->firstOrFail();
-        //$training = Training::find($training_slug);
-        //$training = Training::where('training_id', '=', $training_id) ->first();
-        //return $training;
         $announcement->delete();
         return redirect('/announcements')->with('status', 'The announcement information has been deleted!');
     }

@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('admin.layouts.master')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -8,6 +8,9 @@
                         <h2>Register</h2>
                     </div>
                     <div class="panel-body">
+                        @if(session('status'))
+                            <p class="alert alert-success">{{ session('status') }}</p>
+                        @endif
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>

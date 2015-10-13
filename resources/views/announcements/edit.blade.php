@@ -1,4 +1,4 @@
-@extends('trainings.master')
+@extends('admin.layouts.master')
 @section('title', 'Announcement')
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </fieldset>

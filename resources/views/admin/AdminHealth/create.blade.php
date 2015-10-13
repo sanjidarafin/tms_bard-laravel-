@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.master')
 @section('script')
     <link href="{!! asset('css/datepicker.css') !!}" rel="stylesheet">

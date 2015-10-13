@@ -1,8 +1,10 @@
-@extends('master/master')
+@extends('admin.layouts.master')
 @section('title', 'Edit a course')
 
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
+        <h2 class="text-center">Edit Course Info</h2>
+        <br>
         <div class="well well bs-component">
 
             <form class="form-horizontal" method="post">
@@ -111,7 +113,7 @@
                         <div class="col-sm-8">
                             <select class="form-control" name="training_id" value="{!! $courses->training_name !!}" >
                                 @foreach($trainings as $training)
-                                <option value="{{ $training->training_id }}">{{ $training->training_name }}</option>
+                                <option value="{{ $training->id }}">{{ $training->training_name }}</option>
                                 @endforeach
                             </select>
                         </div>

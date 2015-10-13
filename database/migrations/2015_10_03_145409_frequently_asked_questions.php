@@ -17,6 +17,7 @@ class FrequentlyAskedQuestions extends Migration
             $table->integer('training_id');
             $table->text('question');
             $table->text('answer');
+            $table->string('author_name');
             $table->timestamps();
         });
     }

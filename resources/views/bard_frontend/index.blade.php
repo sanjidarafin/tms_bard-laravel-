@@ -78,7 +78,7 @@
                                     <h3>No Announcements </h3>
                                 @else
                                     @foreach($announcement as $announcement)
-                                        <a href="{!! action('AnnouncementController@show', $announcement->id) !!}">{!! $announcement->heading !!} &nbsp;&nbsp; Published on {!! $announcement->created_at !!} </a><br>
+                                        <a href="{!! action('AnnouncementController@publicShow', $announcement->id) !!}">{!! $announcement->heading !!} &nbsp;&nbsp; Published on {!! $announcement->created_at !!} </a><br>
                                     @endforeach
                                 @endif
                             </div>
@@ -92,11 +92,15 @@
                         <div class="caption">
                             <div>
                                 <h3>Up Coming Events</h3>
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')<$training->start_date)
-                                        <h5><a href="{!! action('TrainingsController@show', $training->id) !!}">{!! $training->training_name !!}</a></h5>
-                                    @endif
-                                @endforeach
+                                @if ($trainings->isEmpty())
+                                    <h4>No Events </h4>
+                                @else
+                                    @foreach($trainings as $training)
+                                        @if(date('Y-m-d')<$training->start_date)
+                                            <h5><a href="{!! action('TrainingsController@publicShow', $training->id) !!}">{!! $training->training_name !!}</a></h5>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                             <p class="group"><a href="#" class="btn btn-default">LEARN MORE</a></p>
                         </div>

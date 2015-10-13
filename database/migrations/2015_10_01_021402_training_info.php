@@ -23,10 +23,11 @@ class TrainingInfo extends Migration
             $table->date('end_date');
             $table->text('provided_resources');
             $table->text('accommodation');
-            $table->text('testimonial')->nullable();
+            //$table->text('testimonial')->nullable();
             $table->text('daily_schedule');
             $table->text('fees_structure');
             $table->text('responsible_person');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

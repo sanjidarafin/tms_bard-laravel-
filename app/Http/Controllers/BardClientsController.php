@@ -29,6 +29,11 @@ class BardClientsController extends Controller
         $clients = Client::orderBy('updated_at', 'desc')->get();
         return view('bard_clients/index')->with('clients', 'active')->with('clients', $clients);
     }
+    public function admin_clients()
+    {
+        $clients = Client::orderBy('updated_at', 'desc')->get();
+        return view('bard_clients/admin_clients')->with('clients', 'active')->with('clients', $clients);
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -73,13 +73,14 @@ class CourseController extends Controller
      * @return Response
      */
     public function training_name_by_training_id($training_id){
-        $training = Training::whereTraining_id($training_id)->firstOrFail();
+        $training = Training::whereid($training_id)->firstOrFail();
+        //$training = Training::whereId($training_id)->firstOrFail();
+
         return $training->training_name;
 
     }
     public function show($id)
     {
-        //$training=Training::all();
         $courses = Course::whereId($id)->firstOrFail();
         $training_id = $courses->training_id;
         $training_name = $this->training_name_by_training_id($training_id);

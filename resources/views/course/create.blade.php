@@ -1,4 +1,6 @@
-@extends('master/master')
+
+<?php //print_r($trainings); exit; ?>
+@extends('admin.layouts.master')
 @section('title', 'Form')
 
 @section('content')
@@ -16,63 +18,63 @@
                 <div class="form-group">
                         <label for="inputCourseName" class="col-sm-4 control-label">Course Name:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputCourseName" name="course_name"  placeholder="Course Name">
+                            <input type="text" class="form-control" id="inputCourseName" name="course_name"  value="{{ old('course_name')}}" placeholder="Course Name">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputIntroduction" class="col-sm-4 control-label">Introduction:</label>
                         <div class="col-sm-8">
-                            <textarea class="form-control" rows="3" name="introduction"></textarea>
+                            <textarea class="form-control" rows="3" name="introduction" >{{{ Input::old('introduction') }}}</textarea>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputObjectives" class="col-sm-4 control-label">Objectives:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputObjectives" name="objectives"  placeholder="Objectives">
+                            <input type="text" class="form-control" id="inputObjectives" name="objectives" value="{{ old('objectives')}}"  placeholder="Objectives">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputCourseContents" class="col-sm-4 control-label">Course Contents:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputCourseContents" name="course_contents" placeholder="Course Contents">
+                            <input type="text" class="form-control" id="inputCourseContents" name="course_contents" value="{{ old('course_contents')}}" placeholder="Course Contents">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputTrainingMethods" class="col-sm-4 control-label">Traning Methods:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputTrainingMethods" name="training_methods"  placeholder="Training Methods">
+                            <input type="text" class="form-control" id="inputTrainingMethods" name="training_methods" value="{{ old('training_methods')}}" placeholder="Training Methods">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputParticipants" class="col-sm-4 control-label">Participants:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputParticipants" name="participants"  placeholder="Participants">
+                            <input type="text" class="form-control" id="inputParticipants" name="participants" value="{{ old('participants')}}"  placeholder="Participants">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputDuration" class="col-sm-4 control-label">Duration:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputDuration" name="duration"  placeholder="Duration">
+                            <input type="text" class="form-control" id="inputDuration" name="duration" value="{{ old('duration')}}" placeholder="Duration">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputAcademicStaff" class="col-sm-4 control-label">Academic Staff:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputAcademicStaff" name="academic_staff"  placeholder="Academic Staff">
+                            <input type="text" class="form-control" id="inputAcademicStaff" name="academic_staff" value="{{ old('academic_staff')}}"  placeholder="Academic Staff">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputCourseFee" class="col-sm-4 control-label">Course Fee:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputCourseFee" name="course_fee"  placeholder="Course Fee">
+                            <input type="text" class="form-control" id="inputCourseFee" name="course_fee" value="{{ old('course_fee')}}" placeholder="Course Fee">
                         </div>
                     </div>
                     
@@ -80,7 +82,7 @@
                     <div class="form-group">
                         <label for="inputAccommodationAndFood" class="col-sm-4 control-label">Accommodation and Food:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputAccommodationAndFood" name="accommodation_and_food" placeholder="Accommodation and Food">
+                            <input type="text" class="form-control" id="inputAccommodationAndFood" name="accommodation_and_food" value="{{ old('accommodation_and_food')}}"placeholder="Accommodation and Food">
                         </div>
                     </div>
                     
@@ -88,21 +90,21 @@
                     <div class="form-group">
                         <label for="inputLibrary" class="col-sm-4 control-label">Library:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputLibrary" name="library"  placeholder="Library">
+                            <input type="text" class="form-control" id="inputLibrary" name="library" value="{{ old('library')}}" placeholder="Library">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputAward" class="col-sm-4 control-label">Award:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputAward" name="award" placeholder="Award">
+                            <input type="text" class="form-control" id="inputAward" name="award" value="{{ old('award')}}" placeholder="Award">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="inputAddressForCorrespondence" class="col-sm-4 control-label">Address for Correspondence:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="inputAddressForCorrespondence" name="address_for_correspondence"  placeholder="Address for Correspondence">
+                            <input type="text" class="form-control" id="inputAddressForCorrespondence" name="address_for_correspondence" value="{{ old('address_for_correspondence')}}" placeholder="Address for Correspondence">
                         </div>
                     </div>
                     
@@ -110,8 +112,9 @@
                         <label for="inputTrainingName" class="col-sm-4 control-label">Training Name:</label>
                         <div class="col-sm-8">
                             <select class="form-control" name="training_id">
+                             
                                 @foreach($trainings as $training)
-                                <option value="{{ $training->training_id }}">{{ $training->training_name }}</option>
+                                <option value="{{ $training->id }}">{{ $training->training_name }}</option>
 
                                 @endforeach
                             </select>

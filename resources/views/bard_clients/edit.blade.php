@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('admin.layouts.master')
 @section('title', 'Update a Clients Profile')
 @section('content')
     <section class="content-2 col-12" style="background-color: rgb(255, 255, 255);">
