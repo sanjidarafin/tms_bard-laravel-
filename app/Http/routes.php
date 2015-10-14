@@ -64,9 +64,9 @@ Route::get('listOfstudentsAndMarks','MarkSheetController@listOfstudentsAndMarks'
 Route::get('/trainee/health/create', 'HealthController@create');
 Route::post('/trainee/health/create', 'HealthController@store');
 Route::get('/trainee/health/healthInfos', 'HealthController@index');
-Route::get('/trainee/health/healthInfo/{id?}', 'HealthController@show');
-Route::get('/trainee/health/healthInfo/{id?}/edit', 'HealthController@edit');
-Route::post('/trainee/health/healthInfo/{id?}/edit', 'HealthController@update');
+Route::get('/healthInfo/{id?}', 'HealthController@show');
+Route::get('/healthInfo/{id?}/edit', 'HealthController@edit');
+Route::post('/healthInfo/{id?}/edit', 'HealthController@update');
 
 
 

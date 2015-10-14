@@ -28,7 +28,7 @@
                                     <td>{!! $health->user_id !!} </td>
                                     <td>Name of the User </td>
                                     <td>
-                                        <a href="{!! action('HealthController@show', $health->user_id) !!}">View</a>
+                                        <a href="{!! action('HealthController@edit', $health->user_id) !!}" class="btn btn-info pull-left">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach

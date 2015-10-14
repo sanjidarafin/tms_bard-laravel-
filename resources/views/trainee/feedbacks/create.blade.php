@@ -14,8 +14,8 @@
                             <br>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <h5><b>1. Name of Training Course :</b> 3rd FTFL Foundation Training Course</h5>
-                                    <h5><b>2. Duration                :</b> 01 August-29 October 2015</h5>
+                                    <h4><b>1. Name of Training Course :</b> 3rd FTFL Foundation Training Course</h4>
+                                    <h4><b>2. Duration                :</b> 01 August-29 October 2015</h4>
                                     </div>
                                 <br>
 
@@ -66,7 +66,7 @@
                            </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left"> A1. S/he spoke loud enough </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A1. S/he spoke loud enough </b></h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="A1" value="5" /> </label>
                                             <label><input type="radio" name="A1" value="4" /> </label>
@@ -79,7 +79,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left"> A2. S/he spoke clearly and at a good pace </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A2. S/he spoke clearly and at a good pace</b> </h4></label>
 
                                         <div class="radio">
                                             <label><input type="radio" name="A2" value="5" /> </label>
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left"> A3. S/he spoke loud enough. S/he used good eye contact,body language and non-verbal communication skills </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A3. S/he spoke loud enough. S/he used good eye contact,body language and non-verbal communication skills</b> </h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="A3" value="5" /> </label>
                                             <label><input type="radio" name="A3" value="4" /> </label>
@@ -104,7 +104,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"> <h5 align = "left">A4. Speaker's Rapport building with participants </h5></label>
+                                    <label class="col-lg-6 control-label"> <h4 align = "left"><b>A4. Speaker's Rapport building with participants</b> </h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="A4" value="5" /> </label>
                                             <label><input type="radio" name="A4" value="4" /> </label>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left"> A5. Speaker's Interaction with Participants</h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A5. Speaker's Interaction with Participants</b></h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="A5" value="5" /> </label>
                                             <label><input type="radio" name="A5" value="4" /> </label>
@@ -129,7 +129,7 @@
 
                                 <legend>B. Presentation Content</legend>
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left">  B1. Presentation topic was useful and of interest to me personally </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"> <b> B1. Presentation topic was useful and of interest to me personally</b> </h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="B1" value="5" /> </label>
                                             <label><input type="radio" name="B1" value="4" /> </label>
@@ -141,7 +141,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left">B2. The presentation meterial was well-organized and easy to follow </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b>B2. The presentation meterial was well-organized and easy to follow </b></h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="B2" value="5" /> </label>
                                             <label><input type="radio" name="B2" value="4" /> </label>
@@ -153,7 +153,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h5 align = "left"> B3. The Speaker was prepared and Knowledgeable on the topic </h5></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> B3. The Speaker was prepared and Knowledgeable on the topic </b></h4></label>
                                         <div class="radio">
                                             <label><input type="radio" name="B3" value="5" /> </label>
                                             <label><input type="radio" name="B3" value="4" /> </label>
