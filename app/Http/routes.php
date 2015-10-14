@@ -61,12 +61,12 @@ Route::get('listOfstudentsAndMarks','MarkSheetController@listOfstudentsAndMarks'
 
 
 //Route belongs to HealthController by Sajib
-Route::get('/create', 'HealthController@create');
-Route::post('/create', 'HealthController@store');
-Route::get('/healthInfos', 'HealthController@index');
-Route::get('/healthInfo/{id?}', 'HealthController@show');
-Route::get('/healthInfo/{id?}/edit', 'HealthController@edit');
-Route::post('/healthInfo/{id?}/edit', 'HealthController@update');
+Route::get('/trainee/health/create', 'HealthController@create');
+Route::post('/trainee/health/create', 'HealthController@store');
+Route::get('/trainee/health/healthInfos', 'HealthController@index');
+Route::get('/trainee/health/healthInfo/{id?}', 'HealthController@show');
+Route::get('/trainee/health/healthInfo/{id?}/edit', 'HealthController@edit');
+Route::post('/trainee/health/healthInfo/{id?}/edit', 'HealthController@update');
 
 
 
@@ -164,10 +164,11 @@ Route::post('/courses/{id?}/delete','CourseController@destroy');
 Route::get('master', function () {
     return view('admin.layouts.master');
 });
-
+/*
 Route::get('/healthCreate', 'AdminController@create');
 Route::post('/healthCreate', 'AdminController@store');
 Route::get('/adminHealthInfos', 'AdminController@index');
 Route::get('/healthInfo/{id?}', 'AdminController@show');
 Route::get('/healthInfo/{id?}/edit', 'AdminController@edit');
 Route::post('/healthInfo/{id?}/edit', 'AdminController@update');
+*/

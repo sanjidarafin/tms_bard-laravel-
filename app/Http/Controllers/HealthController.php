@@ -20,7 +20,7 @@ class HealthController extends Controller
     public function index()
     {
         $healthInfos = HealthReport::all();
-        return view('health.index', compact('healthInfos'));
+        return view('trainee.health.index', compact('healthInfos'));
     }
 
     /**
@@ -30,7 +30,7 @@ class HealthController extends Controller
      */
     public function create()
     {
-        return view('health.create');
+        return view('trainee.health.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class HealthController extends Controller
         ));
         $healthExam->save();
         $healthInfo->save();
-        return redirect('/health/create')->with('status', 'Your information has been created!');
+        return redirect('/trainee/health/create')->with('status', 'Your information has been created!');
         //print_r($healthInfo);
     }
 
@@ -88,7 +88,7 @@ class HealthController extends Controller
     {
         $healthInfo = HealthReport::whereUserId($id)->firstOrFail();
         $healthExam = HealthExam::whereUserId($id)->firstOrFail();
-        return view('health.show', compact('healthInfo','healthExam'));
+        return view('trainee.health.show', compact('healthInfo','healthExam'));
     }
 
     /**
@@ -101,7 +101,7 @@ class HealthController extends Controller
     {
         $healthInfo = HealthReport::whereUserId($id)->firstOrFail();
         $healthExam = HealthExam::whereUserId($id)->firstOrFail();
-        return view('health.edit', compact('healthInfo', 'healthExam'));
+        return view('trainee.health.edit', compact('healthInfo', 'healthExam'));
     }
 
     /**

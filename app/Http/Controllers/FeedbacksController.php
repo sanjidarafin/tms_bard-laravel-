@@ -18,7 +18,7 @@ class FeedbacksController extends Controller
     public function index()
     {
         $feedbackInfos = Feedback::all();
-        return view('feedbacks.index', compact('feedbackInfos'));
+        return view('trainee.feedbacks.index', compact('feedbackInfos'));
     }
 
     /**
@@ -29,7 +29,7 @@ class FeedbacksController extends Controller
     public function create()
     {
         $trainers = Trainer::all();
-        return view('feedbacks.create',compact('trainers'));
+        return view('trainee.feedbacks.create',compact('trainers'));
     }
 
     /**
@@ -55,7 +55,7 @@ class FeedbacksController extends Controller
         
         $feedback->save();
         
-        return redirect('/feedbackIndex')->with('status', 'Your information has been created!');
+        return redirect('feedbackIndex')->with('status', 'Your information has been created!');
     }
 
     /**
@@ -67,7 +67,7 @@ class FeedbacksController extends Controller
     public function show($id)
     {
         $feedbackInfo = Feedback::whereTrainerId($id)->firstOrFail();
-        return view('feedbacks.show', compact('feedbackInfo'));
+        return view('trainee.feedbacks.show', compact('feedbackInfo'));
     }
 
     /**
