@@ -6,10 +6,20 @@
         <div class="col-md-12">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
                     @foreach ($errors->all() as $error)
                         <p class="alert alert-danger">{{ $error }}</p>
                     @endforeach
+                        @if (session('check'))
+                            <div class="alert alert-danger">
+                                {{ session('check') }}
+                            </div>
+                        @endif
+                        @if (session('warning'))
+                            <div class="alert alert-danger">
+                                {{ session('warning') }}
+                            </div>
+                        @endif
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -193,6 +203,18 @@
                             </div>
                         </div>
                     </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-10">
+                                    <label>Upload Image</label><br>
+                                    <input type="file" name="image_path" class="field" id="image_path">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                        </div>
+
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button class="btn btn-default">Cancel</button>

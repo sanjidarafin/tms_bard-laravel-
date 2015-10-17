@@ -13,7 +13,7 @@
 	                    <p> {!! $courses->introduction !!} </p>
 
 	                    <h3> Objectives:</h3> 
-	                    <p>Objectives:  {!! $courses->objectives !!} </p>
+	                    <p> {!! $courses->objectives !!} </p>
 
 	                    <h3> Course Contents:</h3>
 	                    <p>  {!! $courses->course_contents !!} </p>
@@ -44,6 +44,9 @@
 
 	                    <h3> Address of Correspondence:</h3>
 	                    <p>  {!! $courses->address_for_correspondence !!} </p>
+	                    
+
+	                    
 	                    
 
 	                    

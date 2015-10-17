@@ -1,51 +1,102 @@
-@extends('layout.master')
+@extends('master.trainee_master')
 @section('title', 'Show feedback')
 @section('content')
-   <div class="container col-md-8 col-md-offset-2">
+
+   <div class="container col-md-6 col-md-offset-2">
         <div class="well well bs-component">
-                <fieldset>
-                    <legend align="center"><b>Bangladesh Academy For Rural Development</b></legend>
-                    <h5 align="center"><b>Kotbari, Comilla</b></h5>
-                    <h3 align="center"><b><u><i>Health Examination Report</i></u></b></h3>
-
-                    <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label">Name of the training Course: </label>
-                        <h4><b><br>3rd FTFL Foundation Training Course<br></b></h4>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label">Participants: </label>
-                        <h4><b>FTFL Trainees of Bangladesh Computer Council</b></h4>
-                    </div>
-
-                     <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label">Duration: </label>
-                        <h4><b>01 August-29 October 2015</b></h4>
-                    </div>
-            </fieldset>
-        <div class="form-group">
-            <div class="col-md-9 col-md-offset-3">
-                <div id="messages"></div>
-            </div>
-        </div>
-      
-               
-
-               <form class="form-horizontal" id="productForm" method="post" action="">
+			<fieldset>
+                <h3 align="center"><b><u><i>SPEAKER EVALUATION FORM</i></u></b></h3>
+                <br>
                 <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label">Speaker's Name: </label>
-                        <h4><b>{!! $feedbackInfo->trainer->name !!}</b></h4>
-                    </div>
-               
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <div id="messages"></div>
+                    <div class="col-md-12">
+                        <h4><b>1. Name of Training Course :</b> 3rd FTFL Foundation Training Course</h4>
+                        <h4><b>2. Duration                :</b> 01 August-29 October 2015</h4>
                         </div>
-                    </div>
-                   
-                    <div class="row">
-                      <div class="col-md-6">
+                    <br>
+                </div>
+            </fieldset>
 
+
+          @foreach($feedbacks as $feedback)
+                @if(!$feedback->trainer_id)
+                    <div class="alert alert-warning">
+                    <span class=" glyphicon glyphicon-warning-sign " >
+                        <strong>There is no feedback for this trainer !!</strong>
+                    </span>
+                    </div>
+                @else 
+               <form class="form-horizontal" id="productForm" method="post" action="">
+                    <div class="form-group">
+                        <label for="title" class="col-md-6 control-label">Speaker's Name: </label>
+                        <h4>
+                        <b>{!! $feedback->trainer->name !!}</b></h4>
+                        
+                    </div>
+                       
+             
+                       
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>A1. S/he spoke loud enough :</b></h5> </label>
+                            <label class="col-lg-4 control-label"> {!! $feedback->voice_range !!} </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>A2. S/he spoke clearly and at a good pace</b></h5> </label>
+                            <label class="col-lg-4 control-label"> {!! $feedback->voice_clearity !!} </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>A3. S/he spoke loud enough. S/he used good eye contact,body language and non-verbal communication skills</b></h5> </label>
+                            <label class="col-lg-4 control-label"> {!! $feedback->communication_skills !!} </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>A4. Speaker's Rapport building with participants</b></h5> </label>
+                            <label class="col-lg-4 control-label">{!! $feedback->rapport_building !!} </label>
+                        </div>
+                        
+                         <div class="form-group">
+                             <label class="col-lg-6 control-label"><h4 align = "left"><b> A5. Speaker's Interaction with Participants</b></h4></label>
+                             <label class="col-lg-4 control-label"> <label>{!! $feedback->interaction !!}</label> </label>
+                         </div>
+
+
+                        <legend>B. Presentation Content</legend>
+
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>B1. Presentation topic was useful and of interest to me personall</b></h5> </label>
+                            <label class="col-lg-4 control-label"> {!! $feedback->topic_usefulness !!} </label>
+                        </div>
+
+                       <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>B2. The presentation meterial was well-organized and easy to follow</b></h5> </label>
+                            <label class="col-lg-4 control-label">  {!! $feedback->material_organization !!} </label>
+                       </div>
+
+                      <div class="form-group">
+                            <label class="col-lg-6 control-label"> <h5 align = "left"><b>B3. The Speaker was prepared and Knowledgeable on the topic</b></h5> </label>
+                            <label class="col-lg-4 control-label">  {!! $feedback->speakers_knowledge !!} </label>
+                      </div>
+
+                   <div class="form-group">
+                    <hr>
+                       <label class="col-lg-6 control-label"> <h5 align = "left"><legend>Average of feedback is: </legend> </h5> </label>
+                       <label class="col-lg-4 control-label"> {!! $avg !!}</label>
+
+                   </div>
+               </form>
+            @endif
+            @endforeach
+
+
+    </div>
+</div>
+            
+ 
+         <div class="row">
+
+                      <div class="col-md-3">
+                            <div class="well well bs-component">
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
@@ -71,126 +122,18 @@
                                 </tbody>
                             </table>
 
-                        </div>
-                    <div class="form-group">
-                        <label class="col-md-6 control-label"> </label>
-                        <div class="col-lg-4">
-                            <legend><h5 align = "left">Highest<------------------------------->Lowest</h5></legend>
-                            <legend><h5 align ="left">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</h5></legend>
-                        </div>
-                        
-                    </div>
-                   </div>
-                    <legend>A. Speaker's Style</legend>
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"> <h5 align = "left">A1. S/he spoke loud enough</h5> </label>
-                                <div class="radio">
-                                    <label><input type="radio" name="A1" {!! $feedbackInfo->voice_range==5?"checked":"" !!}  /> </label>
-                                    <label><input type="radio" name="A1" {!! $feedbackInfo->voice_range==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A1"  {!! $feedbackInfo->voice_range==3?"checked":"" !!}/> </label>
-                                    <label><input type="radio" name="A1" {!! $feedbackInfo->voice_range==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A1" {!! $feedbackInfo->voice_range==1?"checked":"" !!} /> </label>                   
-                                </div>                     
-                        </div>
-                      
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left"> A2. S/he spoke clearly and at a good pace</h5> </label>
-                           
-                                <div class="radio">
-                                    <label><input type="radio" name="A2" {!! $feedbackInfo->voice_clearity==5?"checked":"" !!}  /> </label>
-                                    <label><input type="radio" name="A2" {!! $feedbackInfo->voice_clearity==4?"checked":"" !!}  /> </label>
-                                    <label><input type="radio" name="A2" {!! $feedbackInfo->voice_clearity==3?"checked":"" !!}  /> </label>
-                                    <label><input type="radio" name="A2" {!! $feedbackInfo->voice_clearity==2?"checked":"" !!}  /> </label>
-                                    <label><input type="radio" name="A2" {!! $feedbackInfo->voice_clearity==1?"checked":"" !!} /> </label>
-                                </div>
-                       
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left"> A3. S/he spoke loud enough. S/he used good eye contact,body language and <br>non-verbal communication skills </h5></label>
-                                <div class="radio">
-                                    <label><input type="radio" name="A3" {!! $feedbackInfo->communication_skills==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A3" {!! $feedbackInfo->communication_skills==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A3" {!! $feedbackInfo->communication_skills==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A3" {!! $feedbackInfo->communication_skills==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A3" {!! $feedbackInfo->communication_skills==1?"checked":"" !!} /> </label>                   
-                                </div>
-                       
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left"> A4. Speaker's Rapport building with participants</h5> </label>
-                                <div class="radio">
-                                    <label><input type="radio" name="A4" {!! $feedbackInfo->rapport_building==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A4" {!! $feedbackInfo->rapport_building==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A4" {!! $feedbackInfo->rapport_building==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A4" {!! $feedbackInfo->rapport_building==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A4" {!! $feedbackInfo->rapport_building==1?"checked":"" !!} /> </label>                   
-                                </div>
-                       
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left"> A5. Speaker's Interaction with Participants</h5></label>
-                                <div class="radio">
-                                    <label><input type="radio" name="A5" {!! $feedbackInfo->interaction==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A5" {!! $feedbackInfo->interaction==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A5" {!! $feedbackInfo->interaction==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A5" {!! $feedbackInfo->interaction==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="A5" {!! $feedbackInfo->interaction==1?"checked":"" !!} /> </label>                   
-                                </div>
-                       
-                        </div>
-                        
-                        <legend>B. Presentation Content</legend>
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"> <h5 align = "left"> B1. Presentation topic was useful and of interest to me personally </h5></label>
-                                <div class="radio">
-                                    <label><input type="radio" name="B1" {!! $feedbackInfo->topic_usefulness==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B1" {!! $feedbackInfo->topic_usefulness==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B1" {!! $feedbackInfo->topic_usefulness==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B1" {!! $feedbackInfo->topic_usefulness==2?"checked":"" !!}/> </label>
-                                    <label><input type="radio" name="B1" {!! $feedbackInfo->topic_usefulness==1?"checked":"" !!} /> </label>                   
-                                </div>
-                       
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left">B2. The presentation meterial was well-organized and easy to follow</h5></label>
-                                <div class="radio">
-                                    <label><input type="radio" name="B2" {!! $feedbackInfo->material_organization==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B2" {!! $feedbackInfo->material_organization==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B2" {!! $feedbackInfo->material_organization==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B2" {!! $feedbackInfo->material_organization==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B2" {!! $feedbackInfo->material_organization==1?"checked":"" !!} /> </label>                   
-                                </div>
-                       
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label"><h5 align = "left"> B3. The Speaker was prepared and Knowledgeable on the topic</h5></label>
-                                <div class="radio">
-                                    <label><input type="radio" name="B3" {!! $feedbackInfo->speakers_knowledge==5?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B3" {!! $feedbackInfo->speakers_knowledge==4?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B3" {!! $feedbackInfo->speakers_knowledge==3?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B3" {!! $feedbackInfo->speakers_knowledge==2?"checked":"" !!} /> </label>
-                                    <label><input type="radio" name="B3" {!! $feedbackInfo->speakers_knowledge==1?"checked":"" !!} /> </label>
-                                </div>
-                       
-                        </div>
-                        
-                    <legend>Additional Comments(If Any):</legend>
 
-       
-                       <div class="form-group">
-                        <div class="col-lg-12">
-                            <textarea align="left" class="form-control" rows="5" id="comment" name = "comments">{!! $feedbackInfo->comments !!}</textarea>
-                        </div>
+                         <div class="form-group">
+                
+                    <div class="">
+                            <legend><h5 align = "left">Highest<--------------------------->Lowest</h5></legend>
+                            <legend><h5 align ="left">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</h5></legend>
                     </div>
-                         
-                   
-            </form>
-    </div>
+                            
+            </div>
+        </div>
+                    
+        </div>          
 </div>
+
 @endsection

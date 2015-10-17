@@ -19,9 +19,9 @@
                 <li class="@if(isset($trainings))active @endif dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TRAINING <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ URL::to('/public_trainings') }}">All Training</a></li>
-                        <li><a href="{{ URL::to('/trainer') }}">Trainer</a></li>
-                        <li><a href="{{ URL::to('/trainee') }}">Trainee</a></li>
+                        <li><a href="{{ URL::to('/trainings') }}">All Training</a></li>
+                        <li><a href="{{ URL::to('/trainers') }}">Trainers</a></li>
+                        <li><a href="{{ URL::to('/trainees') }}">Trainees</a></li>
                     </ul>
                 </li>
                 <li class="@if(isset($faculty))active @endif"><a href="{{ URL::to('/faculty') }}" class="">FACULTY</a></li>

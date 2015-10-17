@@ -38,29 +38,38 @@
                         @else
                             <label><h4>Ongoing Training</h4></label><hr>
                             <div>
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')>=$training->start_date && date('Y-m-d')<=$training->end_date )
+                                 @if ($ongoingTrainings->isEmpty())
+                                     <p> There is no available On going trainings.</p>
+                                 @else
+                                    @foreach($ongoingTrainings as $training)
+                                        <img src="{{ asset( $training->image_path) }}" width="100" height="100">
                                         <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@publicShow', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                 @endif
                             </div>
 
                             <label><h4>Upcoming Training</h4></label><hr>
                             <div>
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')<$training->start_date)
+                                @if ($upcomingTrainings->isEmpty())
+                                    <p> There is no available Up coming trainings.</p>
+                                @else
+                                    @foreach($upcomingTrainings as $training)
+                                        <img src="{{ asset( $training->image_path) }}" width="100" height="100">
                                         <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@publicShow', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                @endif
                             </div>
 
                             <label><h4>Past Training</h4></label><hr>
-                            <div class="inline">
-                                @foreach($trainings as $training)
-                                    @if(date('Y-m-d')>$training->end_date)
+                            <div>
+                                @if ($pastTrainings->isEmpty())
+                                    <p> There is no Past trainings.</p>
+                                @else
+                                    @foreach($pastTrainings as $training)
+                                        <img src="{{ asset( $training->image_path) }}" width="100" height="100">
                                         <h5>{!! $training->training_name !!}<a href="{!! action('TrainingsController@publicShow', $training->id) !!}" class="btn btn-info" style="float: right;">VIEW</a></h5>
-                                    @endif
-                                @endforeach
+                                    @endforeach
+                                @endif
                             </div>
                         @endif
                     </div>

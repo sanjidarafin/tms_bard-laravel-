@@ -1,5 +1,3 @@
-
-<?php //print_r($trainings); exit; ?>
 @extends('admin.layouts.master')
 @section('title', 'Form')
 
@@ -8,7 +6,7 @@
         <div class="well well bs-component">
         	 <h3 class="text-center">Add a Course</h3>
            
-            <form class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
 				
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}"> 
 				@foreach ($errors->all() as $error)
@@ -120,6 +118,15 @@
                             </select>
                         </div>
                     </div>
+
+                     <div class="form-group">
+                        <label for="Image" class="col-sm-4 control-label">Course Image:</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="field" id="Image" name="course_image">
+                             <p class="help-block">Dimention Home Page: 240px X 140px (image must be smaller than 150KB)<br/>Dimention Slide: 480px X 306px(image must be smaller than 150KB)</p>
+                        </div>
+                    </div>
+
 					<div class="form-group">
 						<label for="inputTrainer" class="col-sm-4 control-label"></label>
 						<div class="col-sm-8">

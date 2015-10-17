@@ -60,7 +60,8 @@ class TestimonialController extends Controller
     public function show()
     {
         $testimonials=Testimonial::all();
-        return view('testimonials.show',compact('testimonials'));
+        $trainings=Training::select('id','training_name')->get();
+        return view('testimonials.show',compact('testimonials','trainings'));
     }
 
     /**

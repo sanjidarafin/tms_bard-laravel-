@@ -10,6 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//Route belongs to ViewTraineeReportController
+Route::get('select_training', 'ViewTraineeReportController@select_training');
+Route::get('select_course/{training_id}', 'ViewTraineeReportController@select_course');
+Route::get('view_trainee_report/{course_id}', 'ViewTraineeReportController@view_trainee_report');
+
+//Route belongs to SliderController  by polo dev
+Route::get('slider/all', 'SliderController@slider_index');
+Route::get('slider/create', 'SliderController@upload_slider_image');
+Route::post('slider/create', 'SliderController@slider_image_store');
+Route::post('slider/{id}/delete', 'SliderController@destroy');
+Route::post('increase_slider_position/{position}', 'SliderController@increase_slider_position');
+Route::post('decrease_slider_position/{position}', 'SliderController@decrease_slider_position');
 
 //Route belongs to BardFrontendController by polo dev
 Route::get('/', 'BardFrontendController@index');
@@ -39,6 +51,14 @@ Route::get('/user/single/{id}', 'UsersController@single_user');
 Route::get('/user/single/{id}/edit', 'UsersController@edit_user');
 Route::post('/user/single/{id}/edit', 'UsersController@update_user');
 Route::post('/user/single/{id}/delete', 'UsersController@deleteUser');
+//for redirection after login
+Route::get('/redirection_page', 'UsersController@redirection_page');
+
+//route belongs to CoursePublicController by papia
+Route::get('/public_courses', 'CoursePublicController@index');
+Route::get('/public_courses/{id?}', 'CoursePublicController@show');
+//file created by Shameem
+Route::get('notallowed/{role}', 'UsersController@not_allowed');
 
 //auth route
 Route::controllers([
@@ -54,20 +74,28 @@ Route::controllers([
 Route::resource('registration','RegistrationController');
 Route::resource('calendar','CalenderController');
 Route::resource('exam','ExamController');
+
 Route::resource('/marksheet','MarkSheetController');
 Route::get('marksheet/{id?}/traineesOfThatExam','MarkSheetController@getTrainee');
 Route::get('listOfstudentsAndMarks','MarkSheetController@listOfstudentsAndMarks');
 
+Route::resource('/traineeCourse','traineeCoursesController');
+//Route::get('/traineeCourse','traineeCoursesController@index');
+Route::get('selectTraining','traineeCoursesController@selectTraining');
+Route::get('traineeCourse/{id?}/training','traineeCoursesController@selectTrack');
+Route::get('track/{courseId?}/{TrainingId?}','traineeCoursesController@create');
+
+Route::resource('/trainer_course','TrainerCourseController');
+Route::resource('user_traininginfo','UserTrainingController');
 
 
 //Route belongs to HealthController by Sajib
-Route::get('/trainee/health/create', 'HealthController@create');
-Route::post('/trainee/health/create', 'HealthController@store');
-Route::get('/trainee/health/healthInfos', 'HealthController@index');
+Route::get('/healthCreate', 'HealthController@create');
+Route::post('/healthCreate', 'HealthController@store');
+Route::get('/healthInfos', 'HealthController@index');
 Route::get('/healthInfo/{id?}', 'HealthController@show');
 Route::get('/healthInfo/{id?}/edit', 'HealthController@edit');
 Route::post('/healthInfo/{id?}/edit', 'HealthController@update');
-
 
 
 //route belongs to arif
@@ -76,7 +104,9 @@ Route::post('/healthInfo/{id?}/edit', 'HealthController@update');
 Route::get('/training_info', 'TrainingsController@training_info');
 Route::post('/training_info', 'TrainingsController@store');
 Route::get('/trainings', 'TrainingsController@index');
-Route::post('/training/{id?}','TrainingsController@statusUpdate');
+Route::get('/training_status/{id?}','TrainingsController@statusUpdate');
+//Route::post('/training/{id?}','TrainingsController@active_status_update');
+//Route::post('/training/{id?}','TrainingsController@inactive_status_update');
 Route::get('/training/{id?}', 'TrainingsController@show');
 Route::get('/training/{id?}/edit','TrainingsController@edit');
 Route::post('/training/{id?}/edit','TrainingsController@update');
@@ -96,13 +126,13 @@ Route::get('/announcement/{id?}/edit','AnnouncementController@edit');
 Route::post('/announcement/{id?}/edit','AnnouncementController@update');
 Route::post('/announcement/{id?}/delete','AnnouncementController@destroy');
 //for public announcement pages
-//Route::get('/public_announcements', 'AnnouncementController@publicIndex');
+Route::get('/public_announcements', 'AnnouncementController@publicIndex');
 Route::get('/public_announcement/{id?}', 'AnnouncementController@publicShow');
 //routes belong to Testimonial
 Route::get('/create_testimonial', 'TestimonialController@create');
 Route::post('/create_testimonial', 'TestimonialController@store');
 Route::get('/testimonials', 'TestimonialController@show');
-Route::post('/training/{id?}/delete','TestimonialController@destroy');
+Route::post('/training_testimonial/{id?}/delete','TestimonialController@destroy');
 //routes belong to FAQs
 Route::get('/create_frequently_asked_question', 'FAQsController@create');
 Route::post('/create_frequently_asked_question', 'FAQsController@store');
@@ -124,6 +154,16 @@ Route::post('/trainee_show/{slug?}/edit','InfosController@update');
 Route::get('trainee',function(){
     return view(('trainee.trainee'));
 });
+/*Route::get('trainee',function(){
+    $info = Info::whereSlug($slug)->firstOrFail();
+    return view('trainee.trainee', compact('info'));
+});
+*/
+
+Route::get('trainee_profile/{slug?}/show_profile', 'InfosController@show_profile');
+Route::get('trainee_profile/{slug?}/edit_profile','InfosController@edit_profile');
+Route::post('trainee_profile/{slug?}/edit_profile','InfosController@update_profile');
+
 
 //route belongs to TrainersController by Hasan vai
 Route::get('/trainer_create', 'TrainersController@create');
@@ -132,9 +172,16 @@ Route::get('/trainers', 'TrainersController@index');
 Route::get('/trainer_show/{slug?}', 'TrainersController@show');
 Route::get('/trainer_show/{slug?}/edit','TrainersController@edit');
 Route::post('/trainer_show/{slug?}/edit','TrainersController@update');
-Route::get('trainer',function(){
+
+/*Route::get('trainer',function(){
     return view(('trainer'));
+});*/
+
+
+Route::get('trainer',function(){
+    return view(('trainer'))->with('trainer', 'active');
 });
+
 
 
 
@@ -158,17 +205,70 @@ Route::get('/courses/{id?}', 'CourseController@show');
 Route::get('/courses/{id?}/edit','CourseController@edit');
 Route::post('/courses/{id?}/edit','CourseController@update');
 Route::post('/courses/{id?}/delete','CourseController@destroy');
+//for attendance
+Route::get('/attendance_preform', 'AttendanceController@preform_fill');
+Route::post('/attendance_preform', 'AttendanceController@show_attendance_form_function');
+Route::post('/attendance_create', 'AttendanceController@store_attendance');
+Route::post('/editattendance', 'AttendanceController@editAttendance');
+Route::post('/updateattendance', 'AttendanceController@updateAttendance');
+
+//AttendanceController@updateAttendance
 
 
+Route::get('/show_attendance_info', 'AttendanceController@attendance_info');
+Route::post('/show_attendance_info', 'AttendanceController@get_attendance_info');
+
+
+/*
 //AdminPanel Demo View With test work(Sajib)
-Route::get('master', function () {
+Route::get('master', ['middleware'=>'admin',function () {
+    return view('admin.layouts.master');
+}]);
+
+*/
+Route::get('master',function () {
     return view('admin.layouts.master');
 });
-/*
+
+
+
 Route::get('/healthCreate', 'AdminController@create');
 Route::post('/healthCreate', 'AdminController@store');
 Route::get('/adminHealthInfos', 'AdminController@index');
 Route::get('/healthInfo/{id?}', 'AdminController@show');
 Route::get('/healthInfo/{id?}/edit', 'AdminController@edit');
 Route::post('/healthInfo/{id?}/edit', 'AdminController@update');
-*/
+
+
+//attendance by 5 apaches
+
+Route::get('/attendance_preform', 'AttendanceController@preform_fill');
+
+Route::post('/attendance_preform', 'AttendanceController@show_attendance_form_function');
+Route::post('/attendance_create', 'AttendanceController@store_attendance');
+Route::get('/show_attendance', 'AttendanceController@show_attendance');
+
+Route::get('/UserHealthCreate', 'AdminController@create');
+Route::post('/UserHealthCreate', 'AdminController@store');
+Route::get('/UserHealthInfos', 'AdminController@index');
+Route::get('/UserHealthInfo/{id?}', 'AdminController@show');
+Route::get('/UserHealthInfo/{id?}/edit', 'AdminController@edit');
+Route::post('/UserHealthInfo/{id?}/edit', 'AdminController@update');
+
+//BARD   trainer
+
+Route::get('/bardtrainer_create', 'BardTrainersController@create');
+Route::post('/bardtrainer_create', 'BardTrainersController@store');
+Route::get('/bardtrainers', 'BardTrainersController@index');
+Route::get('/bardtrainer_show/{slug?}', 'BardTrainersController@show');
+Route::get('/bardtrainer_show/{slug?}/edit','BardTrainersController@edit');
+Route::post('/bardtrainer_show/{slug?}/edit','BardTrainersController@update');
+Route::get('bardtrainer',function(){
+    return view(('bardtrainer'));
+});
+
+//by tahmina for trainer
+Route::resource('/exam_create','ExamController@create');
+
+//Route::get('/notallowed/{role?}','');
+

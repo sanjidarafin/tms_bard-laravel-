@@ -65,7 +65,8 @@ class FAQsController extends Controller
     public function adminList()
     {
         $FAQs=FAQ::all();
-        return view('frequently_asked_questions.show',compact('FAQs'));
+        $trainings=Training::select('id','training_name')->get();
+        return view('frequently_asked_questions.show',compact('FAQs','trainings'));
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('master.trainee_master')
 @section('title', 'Health | Create') 
 
 @section('script')
@@ -23,8 +23,7 @@
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
                 <fieldset>
-                    <legend align="center"><b>Bangladesh Academy For Rural Development</b></legend>
-                    <h5 align="center"><b>Kotbari, Comilla</b></h5>
+                  
                     <h3 align="center"><b><u><i>Health Examination Report</i></u></b></h3>
 
                     <div class="form-group">

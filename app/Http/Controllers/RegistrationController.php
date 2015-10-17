@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('admin', ['except' => 'index']);
+//        $this->middleware('trainee', ['only' => ['create']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -93,7 +99,6 @@ class RegistrationController extends Controller
         $regData->img_path=$input['img_path'];
         $regData->edu_id=$lastEduId;
         $regData->user_id=1;
-
         $regData->save();
 
 

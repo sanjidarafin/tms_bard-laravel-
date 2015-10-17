@@ -2,8 +2,8 @@
 @section('title', 'Create Testimonial')
 
 @section('content')
-    <div class="container col-md-8 col-md-offset-2">
-        <div class="well well bs-component" style="background-color:green; color:white; font-size:larger" align="center"><h1>TESTIMONIAL</h1></div>
+    <div class="container col-md-10 col-md-offset-2">
+        <div class="well well bs-component" style="background-color:#43A047; color:white; font-size:larger" align="center"><h1>TESTIMONIAL</h1></div>
         <div class="well well bs-component">
             <form class="form-horizontal" method="post">
                 @foreach ($errors->all() as $error)
@@ -37,17 +37,17 @@
                 </div>
                 <fieldset>
                     <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label"><font color="#556b2f" size="3">Author Name</font></label>
+                        <label for="title" class="col-lg-2 control-label"><font color="#00897B" size="3">Author Name</font></label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="title" placeholder="Author" name="author_name">
+                            <input type="text" class="form-control" id="title" placeholder="Author" name="author_name" value="{{ old('author_name')}}">
                         </div>
                     </div>
                     </br>
                     </br>
                     <div class="form-group">
-                        <label for="content" class="col-lg-2 control-label"><font color="#556b2f" size="3">Testimonial</font></label>
+                        <label for="content" class="col-lg-2 control-label"><font color="#00897B" size="3">Testimonial</font></label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="5" id="testimonial" placeholder="Testimonial" name="testimonial"></textarea>
+                            <textarea class="form-control" rows="5" id="testimonial" placeholder="Testimonial" name="testimonial" value="{{ old('testimonial')}}"></textarea>
 
                         </div>
                     </div>

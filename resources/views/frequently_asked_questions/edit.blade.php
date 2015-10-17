@@ -1,9 +1,8 @@
 @extends('admin.layouts.master')
 @section('title', 'View FAQS')
-
 @section('content')
-    <div class="container col-md-8 col-md-offset-2">
-        <div class="well well bs-component" style="background-color:seagreen; color:white; font-size:larger" align="center"><h1>Frequently Asked Questions</br>(FAQs)</h1></div>
+    <div class="container col-md-10 col-md-offset-2">
+        <div class="well well bs-component" style="background-color: #43A047; color:white; font-size:larger" align="center"><h1>Frequently Asked Questions</br>(FAQs)</h1></div>
         <div class="well well bs-component">
             <form class="form-horizontal" method="post">
                 @foreach ($errors->all() as $error)
@@ -20,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-10">
-                                <label for="inputName" class="control-label"><font color="#556b2f" size="5">Training Name</font></label>
+                                <label for="inputName" class="control-label"><font color="#009688" size="5">Training Name</font></label>
                             </div>
                         </div>
                         <div class="row">
@@ -37,20 +36,20 @@
 						</div>
 					</div>
                     <div class="form-group">
-                        <label for="author" class="col-lg-2 control-label"><font color="#556b2f" size="2">Author Name</font></label>
+                        <label for="author" class="col-lg-2 control-label"><font color="#009688" size="3">Author Name</font></label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="author" placeholder="author" name="author_name" value="{!! $faqs->author_name !!}">
                         </div>
                     </div>
                     </br>
                     <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label"><font color="#556b2f" size="3">Question</font></label>
+                        <label for="title" class="col-lg-2 control-label"><font color="#009688" size="3">Question</font></label>
                         <div class="col-lg-10">
                             <input type="text" class="form-control" id="title" placeholder="???" name="question" value="{!! $faqs->question !!}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="content" class="col-lg-2 control-label"><font color="#556b2f" size="3">Answer</font></label>
+                        <label for="content" class="col-lg-2 control-label"><font color="#009688" size="3">Answer</font></label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" rows="3" id="answer" placeholder="Answer" name="answer">{!! $faqs->answer !!}</textarea>
 
@@ -59,7 +58,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
-                                <button class="btn btn-default">Cancel</button>
+                                <button class="btn btn-info">Cancel</button>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>

@@ -3,11 +3,9 @@
 
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
-        <h2 class="text-center">Edit Course Info</h2>
-        <br>
         <div class="well well bs-component">
 
-            <form class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
 
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
@@ -118,6 +116,15 @@
                             </select>
                         </div>
                     </div>
+
+                     <div class="form-group">
+                        <label for="Image" class="col-sm-4 control-label">Course Image:</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="field" id="Image" name="course_image">
+                             <p class="help-block">Dimention Home Page: 240px X 140px (image must be smaller than 150KB)<br/>Dimention Slide: 480px X 306px(image must be smaller than 150KB)</p>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button class="btn btn-default">Cancel</button>

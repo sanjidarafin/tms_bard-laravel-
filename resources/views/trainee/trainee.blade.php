@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master.trainee_master')
 @section('title','trainee')
 @section('content')
 	<section class="content-2" style="background-color: rgb(255, 255, 255);">
@@ -22,64 +22,57 @@
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								
-								<h3 class="panel-title"    >Trainee Name</h3>
+								<h3 class="panel-title">Trainee Name</h3>
 							  
 							</div>
 							<div class="panel-body">
 								<div class="row">
-								
-									<div class=" col-md-9 col-lg-9 "> 
-										<table class="table table-user-information">
+									<div class=" col-md-12 col-lg-12 "> 
+										<table class="table table-user-information text-center">
 											<tbody>
 												<tr>
 													<td>ID Code:</td>
 													<td>18071</td>
-													<td></td>
 												</tr>
 												<tr>
 													<td>Birth Place:</td>
 													<td>Bangladesh</td>
-													<td></td>
 												</tr>
 												<tr>
 													<td>Birth Date:</td>
 													<td>06/23/2013</td>
-													<td></td>
 												</tr>
 												
 											   <tr>
 													<td>Gender:</td>
 													<td>Male</td>
-													<td></td>
 												</tr>
 												<tr>
 													<td>Home Address:</td>
-													<td>  </td>
-													<td></td>
+													<td>Comilla</td>
 												</tr>
 												<tr>
 													<td>Email:</td>
 													<td><a href="">tahmi@yahoo.com</a></td>
-													<td></td>
 												</tr>
 												<tr>
 													<td>Phone Number:</td>
 													<td>01737-585474</td>
-													<td></td>
-											   
-												</tr>
-												
-												<tr>
-													<td><a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info"  style="background-color:#0097A7" >Attendance</a></td>
-													<td><a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info"  style="background-color:#AA00FF" >Exam Marks</a></td>
-													<td><a  href="{!! URL::to('/') !!}" class="btn btn-info" style="background-color:#64DD17">Log Out</a></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
-							</div>            
+							</div>       
 						</div>
+                        <div class="row">
+                             <div class="col-md-6 text-center">
+                                 <a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info"  style="background-color:#0097A7" >Attendance</a>
+                             </div>
+                              <div class="col-md-6 text-center">
+                                 <a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info"  style="background-color:#1A237E">Exam Marks</a>
+                             </div>
+                         </div>     
                     </div>	
                 </div>
                 <div class="col-md-3 col-lg-3">

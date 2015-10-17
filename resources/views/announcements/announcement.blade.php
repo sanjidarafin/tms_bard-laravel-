@@ -1,8 +1,7 @@
 @extends('admin.layouts.master')
 @section('title', 'Announcement')
-
 @section('content')
-    <div class="container col-md-8 col-md-offset-2">
+    <div class="container col-md-10 col-md-offset-2">
         <div class="well well bs-component">
             <form class="form-horizontal" method="post" id="announcementform">
                 @foreach ($errors->all() as $error)
@@ -15,17 +14,17 @@
                 @endif
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <fieldset>
-                    <legend align="center"><font color="#006400" size="15"><i>Announcement</i></font></legend>
+                    <legend align="center"><font color="#004D40" size="15"><i>Announcement</i></font></legend>
                     <div class="form-group">
-                        <label for="title" class="col-lg-2 control-label"><font color="#556b2f" size="3">Heading</font></label>
+                        <label for="title" class="col-lg-2 control-label"><font color="#009688" size="3">Heading</font></label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="title" placeholder="Give a heading" name="heading">
+                            <input type="text" class="form-control" id="title" placeholder="Give a heading" name="heading" value="{{ old('heading')}}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="content" class="col-lg-2 control-label"><font color="#556b2f" size="3">Content</font></label>
+                        <label for="content" class="col-lg-2 control-label"><font color="#009688" size="3">Content</font></label>
                         <div class="col-lg-10">
-                            <textarea class="form-control" rows="5" id="content" placeholder="Write content" name="content"></textarea>
+                            <textarea class="form-control" rows="5" id="content" placeholder="Write content" name="content" value="">{{ old('content')}}</textarea>
 
                         </div>
                     </div>

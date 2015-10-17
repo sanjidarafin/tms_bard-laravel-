@@ -55,7 +55,7 @@ class MarkSheetController extends Controller
 
 
     }
-    public function insertMarks($mark,$traineeId,$examId)
+    private function insertMarks($mark,$traineeId,$examId)
     {
         $markIn=new Marksheet();
         $markIn->trainee_id=$traineeId;
