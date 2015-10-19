@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HealthFormRequest;
 use App\HealthReport;
 use App\HealthExam;
+use Auth;
 class HealthController extends Controller
 {
     /**
@@ -30,7 +31,9 @@ class HealthController extends Controller
      */
     public function create()
     {
-        return view('health.create');
+        $trainee = Auth::user();
+        //echo $trainee->id;
+        return view('health.create', compact('$trainee'));
     }
 
     /**
@@ -42,7 +45,7 @@ class HealthController extends Controller
     public function store(HealthFormRequest $request)
     {
         $healthInfo = new HealthReport(array(
-            'user_id' => $request->get('user_id'),
+            'user_id' => Auth::user()->id,
             'present_address' => $request->get('present_address'),
             'permanent_address' => $request->get('permanent_address'),
             'birth_date'=> $request->get('birth_date'),
@@ -53,7 +56,7 @@ class HealthController extends Controller
         ));
         
         $healthExam = new HealthExam(array(
-           'user_id' => $request->get('user_id'),
+           'user_id' => Auth::user()->id,
             'navel' => $request->get('navel'),
             'blood_pressure' => $request->get('blood_pressure'),
             'respiration'=> $request->get('respiration'),
@@ -74,7 +77,7 @@ class HealthController extends Controller
         ));
         $healthExam->save();
         $healthInfo->save();
-        return redirect('/healthInfos')->with('status', 'Your information has been created!');
+        return redirect('/healthInfos')->with('status', 'Your health information has been created!');
         //print_r($healthInfo);
     }
 
@@ -142,6 +145,6 @@ class HealthController extends Controller
         $healthExam->comments_mofficer = $request->get('comments_mofficer');
         
         $healthExam->save();    
-        return redirect(action('HealthController@edit', $healthInfo->user_id))->with('status', 'The User_id '.$healthInfo->user_id.' has been updated!');
+        return redirect(action('HealthController@edit', $healthInfo->user_id))->with('status', 'Your information has been updated!');
     }
 }

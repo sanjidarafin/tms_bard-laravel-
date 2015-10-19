@@ -83,7 +83,7 @@
                     <br>
                     <div class="well">
                         <h3>Information Sheet<a href="<?php echo URL::to('/trainee_create'); ?>" class="btn btn-lg btn-info" style="background-color:#69F0AE">Fill The Form</a></h3>
-						<a href="<?php echo URL::to('/trainee_profile/{slug?}/edit_profile'); ?>" class="btn btn-lg btn-info" style="background-color:#00C853">Edit The Form</a>
+						<a href="<?php echo URL::to('/'); ?>" class="btn btn-lg btn-info" style="background-color:#00C853">Edit The Form</a>
                     </div>
 					
 					

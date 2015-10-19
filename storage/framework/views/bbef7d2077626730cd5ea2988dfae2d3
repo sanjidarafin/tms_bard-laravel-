@@ -62,7 +62,7 @@
     <div class="form-group">
         <label class="col-md-3 control-label">ID Code</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" name="user_id" placeholder="Enter UserID here" />
+            <h4><b><?php echo Auth::user()->id; ?></b></h4>
         </div>
     </div>
                     

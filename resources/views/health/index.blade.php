@@ -26,7 +26,7 @@
                             @foreach($healthInfos as $health)
                                 <tr>
                                     <td>{!! $health->user_id !!} </td>
-                                    <td>Name of the User </td>
+                                    <td>{!! Auth::user()->name !!} </td>
                                     <td>
                                         <a href="{!! action('HealthController@show', $health->user_id) !!}">View</a>
                                     </td>

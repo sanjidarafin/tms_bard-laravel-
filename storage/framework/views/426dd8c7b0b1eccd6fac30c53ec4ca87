@@ -5,15 +5,7 @@
             <div class="panel-heading">
                 <h2> Health Report </h2>
             </div>
-            <?php if(session('status')): ?>
-                <div class="alert alert-success">
-                    <?php echo e(session('status')); ?>
-
-                </div>
-            <?php endif; ?>
-            <?php if($healthInfos->isEmpty()): ?>
-                <p> There is no health information of trainees.</p>
-            <?php else: ?>
+            
                 <table class="table">
                     <thead>
                     <tr>
@@ -23,18 +15,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($healthInfos as $health): ?>
+                    <?php foreach($healthReport as $trainee): ?>
                         <tr>
-                            <td><?php echo $health->user_id; ?> </td>
-                            <td>Name of the User </td>
+                            <td><?php echo $trainee->trainee_id; ?> </td>
+                            <td><?php echo $trainee->name; ?> </td>
                             <td>
-                                <a href="<?php echo action('AdminController@show', $health->user_id); ?>">View</a>
+                                <a href="<?php echo action('AdminController@show', $trainee->trainee_id); ?>">View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-            <?php endif; ?>
+           
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('master.trainee_master')
 @section('script')   
     <link href="{!! asset('css/datepicker.css') !!}" rel="stylesheet">
     <script src="{!! asset('js/bootstrap-datepicker.js') !!}"></script>
@@ -58,9 +58,9 @@
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">  
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label">ID Code</label>
+                    <label class="col-md-3 control-label"><h4 align ="left">ID Code:</h4></label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" name="user_id" value="{!! $healthInfo->user_id !!}" />
+                        <h4><b>{!! $healthInfo->user_id !!}</b></h4>
                     </div>
                 </div>
 
@@ -199,7 +199,7 @@
             <!--end health exam-->
             <div class="form-group">
                 <div class="col-md-9 col-md-offset-3">
-                    <button type="submit" class="btn btn-info">Submit</button>
+                    <button type="submit" class="btn btn-info">Update</button>
                 </div>
             </div>
         </form>

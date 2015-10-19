@@ -17,6 +17,7 @@
                 <li class="{{(strcmp(URL::full(), URL::to('/trainee')) == 0) ? 'active' : ''}}"><a href="{{URL::to('/trainee')}}" class="">HOME</a></li>
                 <li class="{{ (strpos(URL::current(), URL::to('feedbackCreate'))!== false) ? 'active' : '' }}"><a href="{{ URL::to('/feedbackCreate') }}" class="">FEEDBACKS</a></li>
                 <li class="@if(isset($about))active @endif"><a href="{{ URL::to('/about') }}" class="">REGISTRATION</a></li>
+                <li class="{{ (strpos(URL::current(), URL::to('healthCreate'))!== false) ? 'active' : '' }}"><a href="{{ URL::to('/healthCreate') }}" class="">HEALTHINFOS</a> </li>
                 <li class="{{ (strpos(URL::current(), URL::to('trainee_create'))!== false) ? 'active' : '' }}"><a href="{{ URL::to('/trainee_create') }}" class="">INFORMATION</a> </li>
                 <li class="{{ (strpos(URL::current(), URL::to('logout'))!== false) ? 'active' : '' }}"><a href="{{ URL::to('/logout') }}" class="">LOGOUT</a> </li>
 

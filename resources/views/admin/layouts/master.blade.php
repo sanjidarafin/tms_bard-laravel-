@@ -122,8 +122,77 @@
                         <i class="fa fa-dashboard"></i> <span>HealthInfo</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="{{ URL::to('/healthCreate') }}"><i class="fa fa-circle-o"></i> Create Info</a></li>
-                        <li class=""><a href="adminHealthInfos"><i class="fa fa-circle-o"></i> All Health Info</a></li>
+                        <li class=""><a href="/adminHealthInfos"><i class="fa fa-circle-o"></i> All Health Info</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i> <span>Calendar</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/calendar/create') }}"><i class="fa fa-circle-o"></i> Create Calendar</a></li>
+                        <li class=""><a href="{{ URL::to('/calendar') }}"><i class="fa fa-circle-o"></i> All Calendar</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Training Trainee Assign</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/user_traininginfo/create') }}"><i class="fa fa-circle-o"></i> Training Trainee Assign</a></li>
+                        <li class=""><a href="{{ URL::to('/user_traininginfo') }}"><i class="fa fa-circle-o"></i> All Training Trainee</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Trainer Course Assign</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/trainer_course/create') }}"><i class="fa fa-circle-o"></i> Trainer Course Assign</a></li>
+                        <li class=""><a href="{{ URL::to('/trainer_course') }}"><i class="fa fa-circle-o"></i> All Trainer Course</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Trainee Course Assign</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/selectTraining') }}"><i class="fa fa-circle-o"></i> Trainee Course Assign</a></li>
+                        <li class=""><a href="{{ URL::to('/traineeCourse') }}"><i class="fa fa-circle-o"></i> All Trainee Course</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Marksheet</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/marksheet') }}"><i class="fa fa-circle-o"></i> Marksheet</a></li>
+{{--                        <li class=""><a href="{{ URL::to('/listOfstudentsAndMarks') }}"><i class="fa fa-circle-o"></i> All Trainee Course</a></li>--}}
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Exam</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/exam/create') }}"><i class="fa fa-circle-o"></i> Create Exam</a></li>
+                        <li class=""><a href="{{ URL::to('/exam') }}"><i class="fa fa-circle-o"></i> All Exam</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-link"></i> <span>Trainee Registration</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class=""><a href="{{ URL::to('/registration/create') }}"><i class="fa fa-circle-o"></i> Registration</a></li>
+                        <li class=""><a href="{{ URL::to('/registration') }}"><i class="fa fa-circle-o"></i> All registration</a></li>
 
                     </ul>
                 </li>
@@ -159,6 +228,16 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-book"></i> <span>BardTrainers</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{!! URL::to('bardtrainers') !!}"><i class="fa fa-circle-o"></i> BardTrainers</a></li>
+                                <li class=""><a href="{{ URL::to('/bardtrainer_create') }}"><i class="fa fa-circle-o"></i>Create BardTrainer</a></li>
+                        
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-picture-o"></i> <span>Slider Management</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
@@ -184,6 +263,16 @@
                     <ul class="treeview-menu">
                         <li class=""><a href="{{ URL::to('/training_info') }}"><i class="fa fa-circle-o"></i>Create Training</a></li>
                         <li class=""><a href="{{ URL::to('/trainings') }}"><i class="fa fa-circle-o"></i> Training List</a></li>
+                        <li class=" treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trainers</span>
+                                <span class="label label-primary pull-right">4</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{!! URL::to('adminTrainers') !!}"><i class="fa fa-circle-o"></i>Trainer List</a></li>
+                            </ul>
+                        </li>
                         <li class=" treeview">
                             <a href="#">
                                 <i class="fa fa-files-o"></i>
@@ -217,7 +306,7 @@
                         <span class="label label-primary pull-right">4</span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{!! URL::to('trainers') !!}"><i class="fa fa-circle-o"></i>Trainers</a></li>
+                        <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i>Trainers</a></li>
                         <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Trainees</a></li>
                         <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Feedback</a></li>
 
@@ -252,6 +341,17 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ URL::to('/announcement_create') }}"><i class="fa fa-circle-o"></i>Create Announcement</a></li>
                         <li><a href="{{ URL::to('/announcements') }}"><i class="fa fa-circle-o"></i> Announcement List</a></li>
+                    </ul>
+                </li>
+                 <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>Feedbacks</span>
+                        <span class="label label-primary pull-right"></span><i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ URL::to('/feedbackView') }}"><i class="fa fa-circle-o"></i>All Feedbacks</a></li>
+                       
                     </ul>
                 </li>
             </ul>

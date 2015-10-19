@@ -226,19 +226,23 @@ Route::get('master', ['middleware'=>'admin',function () {
 }]);
 
 */
-Route::get('master',function () {
-    return view('admin.layouts.master');
-});
-
-
-
-Route::get('/healthCreate', 'AdminController@create');
-Route::post('/healthCreate', 'AdminController@store');
+Route::get('/master', ['middleware'=>'admin','uses'=>'AdminController@adminHome']);
+Route::get('/feedbackView', 'AdminController@feedbackIndex');
+Route::get('/feedbackInfo/{id?}', 'AdminController@feedbackShow');
 Route::get('/adminHealthInfos', 'AdminController@index');
-Route::get('/healthInfo/{id?}', 'AdminController@show');
-Route::get('/healthInfo/{id?}/edit', 'AdminController@edit');
-Route::post('/healthInfo/{id?}/edit', 'AdminController@update');
+//Route::get('master', function () {
+  //  return view('admin.layouts.master');
+//});
 
+
+//
+//Route::get('/healthCreate', 'AdminController@create');
+//Route::post('/healthCreate', 'AdminController@store');
+//Route::get('/adminHealthInfos', 'AdminController@index');
+//Route::get('/healthInfo/{id?}', 'AdminController@show');
+//Route::get('/healthInfo/{id?}/edit', 'AdminController@edit');
+//Route::post('/healthInfo/{id?}/edit', 'AdminController@update');
+//
 
 //attendance by 5 apaches
 

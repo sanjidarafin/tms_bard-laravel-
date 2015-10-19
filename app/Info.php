@@ -12,5 +12,13 @@ class Info extends Model
      						'ph_mobile','diseases','soprts','hobby','expertise','interested_game','height','weight','waist_abdomen',
      						'chest','weight_end_course','course_id'];
     
+    public function healthExam()
+    {
+        return $this->belongsTo('App\HealthExam');
+    }
     
+    public function healthReport()
+    {
+        return $this->belongsTo('App\HealthReport');
+    }
 }

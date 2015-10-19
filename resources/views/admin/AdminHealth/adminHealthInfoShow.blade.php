@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.layouts.admin_master')
 @section('script')
     <link href="{!! asset('css/datepicker.css') !!}" rel="stylesheet">
     <script src="{!! asset('js/bootstrap-datepicker.js') !!}"></script>

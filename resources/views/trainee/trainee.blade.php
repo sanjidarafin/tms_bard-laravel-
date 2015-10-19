@@ -12,8 +12,8 @@
                     </div>
 					<br>
                     <div class="well">
-                        <h3>Health Details<a href="{!! URL::to('/trainee/health/create') !!}" class="btn btn-lg btn-info"  style="background-color:#FFC107" >Fill The Form</a></h3>
-						<a href="{!! URL::to('/trainee/health/healthInfos') !!}" class="btn btn-lg btn-info" style="background-color:#F57F17">Edit The Form</a>
+                        <h3>Health Details<a href="{!! URL::to('/healthCreate') !!}" class="btn btn-lg btn-info"  style="background-color:#FFC107" >Fill The Form</a></h3>
+						<a href="{!! URL::to('/healthInfos') !!}" class="btn btn-lg btn-info" style="background-color:#F57F17">Edit The Form</a>
                     </div>
 					
                 </div>

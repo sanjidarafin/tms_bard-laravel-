@@ -60,45 +60,45 @@
       <input type="hidden" name="_token" value="{!! csrf_token() !!}">  
 
     <div class="form-group">
-        <label class="col-md-3 control-label">ID Code</label>
+        <label class="col-md-3 control-label">ID Code&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-            <input type="text" class="form-control" name="user_id" placeholder="Enter UserID here" />
+            <h4><b>{!! Auth::user()->id !!}</b></h4>
         </div>
     </div>
                     
     <div class="form-group">
-        <label class="col-md-3 control-label">Present Address</label>
+        <label class="col-md-3 control-label">Present Address&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-            <textarea class="form-control" name="present_address" rows="5" placeholder="Enter Present Address here"></textarea>
+            <textarea class="form-control" name="present_address" rows="5" placeholder="Enter Present Address here">{{ old('present_address')}}</textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-md-3 control-label">Permanent Address</label>
+        <label class="col-md-3 control-label">Permanent Address&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-            <textarea class="form-control" name="permanent_address" rows="5" placeholder="Enter Permanent Address here"></textarea>
+            <textarea class="form-control" name="permanent_address" rows="5" placeholder="Enter Permanent Address here">{{ old('permanent_address')}}</textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-xs-3 control-label">Date of birth</label>
+        <label class="col-xs-3 control-label">Date of birth&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-xs-5 date">
             <div class="input-group input-append date" id="datePicker">
-                <input type="text" class="form-control" name="birth_date" placeholder="1990/11/11"/>
+                <input type="text" class="form-control" name="birth_date"  value="{{ old('birth_date')}}"  placeholder="1990/11/11"/>
                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-md-3 control-label">Age at the beginning of the course</label>
+        <label class="col-md-3 control-label">Age at the beginning of the course&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-            <input type="text" class="form-control" name="age_beginning_course" placeholder="Enter age at the beginning of the course"/>
+            <input type="text" class="form-control" name="age_beginning_course"  value="{{ old('age_beginning_course')}}"  placeholder="Enter age at the beginning of the course"/>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-md-3 control-label">Marital Status</label>
+        <label class="col-md-3 control-label">Marital Status&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
             <select class="form-control" name="marital_status" id="sel1">
                 <option value="Married">Married</option>
@@ -108,16 +108,16 @@
     </div>
 
     <div class="form-group">
-        <label class="col-md-3 control-label">Presently are you suffering from any disease(High blood pressure, Diabetics etc?)</label>
+        <label class="col-md-3 control-label">Presently are you suffering from any disease(High blood pressure, Diabetics etc?)&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-             <textarea class="form-control" name="present_disease" rows="5" placeholder="Presently are you suffering from any disease"></textarea>
+             <textarea class="form-control" name="present_disease" rows="5" placeholder="Presently are you suffering from any disease">{{ old('present_disease')}}</textarea>
         </div>
     </div>
     
     <div class="form-group">
-        <label class="col-md-3 control-label">Do you have any physical disability?</label>
+        <label class="col-md-3 control-label">Do you have any physical disability?&nbsp;<span class=red-star" style="color:red">*</span></label>
         <div class="col-md-6">
-             <textarea class="form-control" name="physical_disability" rows="3" placeholder="Presently are you suffering from any disease?"></textarea>
+             <textarea class="form-control" name="physical_disability" rows="3" placeholder="Presently are you suffering from any disease?">{{ old('physical_disability')}}</textarea>
         </div>
     </div>
 
@@ -128,22 +128,22 @@
         <label for="inputName" class="control-label">General Examination</label>
             </div>
         <div class="col-sm-6">
-           a. Navel:<input type="name" class="form-control" id="inputNavel" placeholder="" name="navel">
+           a. Navel:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputNavel" placeholder="" name="navel"  value="{{ old('navel')}}" >
         </div><br>
         <div class="col-sm-6">
-           d. Anemia:<input type="name" class="form-control" id="inputAnemia" placeholder="" name="anemia">
+           d. Anemia:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputAnemia" placeholder="" name="anemia" value="{{ old('anemia')}}" >
         </div><br>
         <div class="col-sm-6">
-           b. Blood Pressure:<input type="name" class="form-control" id="inputPressure" placeholder="" name="blood_pressure">
+           b. Blood Pressure:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"   class="form-control" id="inputPressure" placeholder="" name="blood_pressure" value="{{ old('blood_pressure')}}">
         </div><br>
         <div class="col-sm-6">
-            e. Jaundice:<input type="name" class="form-control" id="inputJaundice" placeholder="" name="jaundice">
+            e. Jaundice:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputJaundice" placeholder="" name="jaundice" value="{{ old('jaundice')}}" >
         </div><br>
         <div class="col-sm-6">
-            c. Respiration:<input type="name" class="form-control" id="inputRespiration" placeholder="" name="respiration">
+            c. Respiration:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputRespiration" placeholder="" name="respiration" value="{{ old('respiration')}}">
         </div><br>
         <div class="col-sm-6">
-           f. Weight:<input type="name" class="form-control" id="inputWeight" placeholder="" name="weight">
+           f. Weight:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputWeight" placeholder="" name="weight"   value="{{ old('weight')}}">
         </div>
     </div>
     
@@ -153,25 +153,25 @@
             <br>
         </div>
         <div class="col-sm-6">
-          a. Heart:<input type="name" class="form-control" id="inputHeart" placeholder="" name="heart">
+          a. Heart:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"   class="form-control" id="inputHeart" placeholder="" name="heart" value="{{ old('heart')}}">
         </div><br>
         <div class="col-sm-6">
-            e. Kidney:<input type="name" class="form-control" id="inputKidney" placeholder="" name="kidney">
+            e. Kidney:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputKidney" placeholder="" name="kidney" value="{{ old('kidney')}}">
         </div><br>
         <div class="col-sm-6">
-            b. Lung:<input type="name" class="form-control" id="inputLung" placeholder="" name="lung">
+            b. Lung:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"   class="form-control" id="inputLung" placeholder="" name="lung" value="{{ old('lung')}}">
         </div><br>
         <div class="col-sm-6">
-            f. Hernia:<input type="name" class="form-control" id="inputHernia" placeholder="" name="hernia">
+            f. Hernia:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"    class="form-control" id="inputHernia" placeholder="" name="hernia" value="{{ old('hernia')}}">
         </div><br>
         <div class="col-sm-6">
-            c. Liver:<input type="name" class="form-control" id="inputLiver" placeholder="" name="liver">
+            c. Liver:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"  class="form-control" id="inputLiver" placeholder="" name="liver" value="{{ old('liver')}}">
         </div><br>
         <div class="col-sm-6">
-            g. Hydrocil:<input type="name" class="form-control" id="inputHydrocil" placeholder="" name="hydrocil">
+            g. Hydrocil:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"    class="form-control" id="inputHydrocil" placeholder="" name="hydrocil"value="{{ old('hydrocil')}}">
         </div>
         <div class="col-sm-6">
-            d. Spleen:<input type="name" class="form-control" id="inputSpleen" placeholder="" name="spleen">
+            d. Spleen:&nbsp;<span class=red-star" style="color:red">*</span><input type="name"   class="form-control" id="inputSpleen" placeholder="" name="spleen" value="{{ old('spleen')}}">
         </div>
 
         <div class="form-group">
@@ -180,20 +180,20 @@
             <br>
             </div>
             <div class="col-sm-6">
-               Left Eye: <input type="text" class="form-control" placeholder="" name="left_eye">
+               Left Eye:&nbsp;<span class=red-star" style="color:red">*</span> <input type="text" class="form-control" placeholder="" name="left_eye"  value="{{ old('left_eye')}}">
             </div><br>
             <div class="col-sm-6">
-                Right Eye: <input type="text" class="form-control" placeholder="" name="right_eye">
+                Right Eye: &nbsp;<span class=red-star" style="color:red">*</span><input type="text" class="form-control" placeholder="" name="right_eye"  value="{{ old('right_eye')}}">
             </div>
         </div>
     </div>
     
     <div class="form-group">
         <div class="col-sm-12">
-            <label for="inputComments" class="control-label">Comments of the Medical Officer</label>
+            <label for="inputComments" class="control-label">Comments of the Medical Officer&nbsp;<span class=red-star" style="color:red">*</span></label>
             <br>
             <div>
-                <textarea class="form-control" rows="5" id="comments_mofficer" name="comments_mofficer"></textarea>
+                <textarea class="form-control" rows="5" id="comments_mofficer" name="comments_mofficer">{{ old('comments_mofficer')}}</textarea>
             </div>
         </div>
     </div>  
