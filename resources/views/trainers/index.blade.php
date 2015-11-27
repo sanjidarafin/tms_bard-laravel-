@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('master_trainer/master')
 @section('title', 'Trainers')
 @section('content')
     
@@ -31,7 +31,7 @@
                                 @foreach($trainers as $trainer)
                                     <tr>
                                         <td> {!! $trainer->id !!}  </td>
-                                       <td> <a href="{!! action('TrainersController@show', $trainer->slug) !!}">{!! $trainer->name !!} </a></td>
+                                       <td> <a href="{!! action('TrainersController@show', $trainer->id) !!}">{!! $trainer->name !!} </a></td>
                                         
                                         <td>{!! $trainer->country !!}</td>
                                         

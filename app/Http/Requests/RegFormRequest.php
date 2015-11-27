@@ -24,9 +24,9 @@ class RegFormRequest extends Request
     public function rules()
     {
         return [
-            'english_name'=>'required',
-            'father_name'=>'required',
-            'mother_name'=>'required',
+            'english_name'=>'required|alpha|min:3',
+            'father_name'=>'required|alpha|min:3',
+            'mother_name'=>'required|alpha|min:3',
             'date_of_birth'=>'required',
             'village'=>'required',
             'post_office'=>'required',
@@ -34,7 +34,7 @@ class RegFormRequest extends Request
             'district'=>'required',
             'id_code'=>'required',
             'organization'=>'required',
-            'e-mail'=>'required',
+            'e-mail'=>'required|email',
             'subject'=>'required',
             'board'=>'required',
             'contact_person_name'=>'required',

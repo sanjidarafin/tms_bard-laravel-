@@ -124,7 +124,7 @@
                                     <h3>No Announcements </h3>
                                 @else
                                     @foreach($announcement as $announcement)
-                                        <a href="{!! action('AnnouncementController@show', $announcement->id) !!}">{!! $announcement->heading !!} &nbsp;&nbsp; Published on {!! $announcement->created_at !!} </a><br>
+                                        <a href="{!! action('AnnouncementController@publicShow', $announcement->id) !!}">{!! $announcement->heading !!} &nbsp;&nbsp; Published on {!! $announcement->created_at !!} </a><br>
                                     @endforeach
                                 @endif
                             </div>
@@ -168,7 +168,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -206,6 +205,23 @@
                     </div>
                 </div>
             </div>
+            
+        </div>
+    </section>
+    <section class="" id="features1-7" style="background-color: rgb(255, 255, 255);">
+        <div class="container">
+            <div class="row">
+                <br><br>
+                <h2 class="mbr-section__header">Our Clients</h2><br><br>
+                @foreach($clients as $client)
+                    <div class="col-sm-2 col-xs-4" >
+                        <img class="img-responsive img-thumbnail"  src="{{ asset ('uploads/'.$client->client_logo) }}">
+                    </div>
+                @endforeach
+                <br><br>
+            </div>
+            <br><br>
         </div>
     </section>
 @endsection
+

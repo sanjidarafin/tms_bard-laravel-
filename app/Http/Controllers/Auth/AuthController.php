@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -10,6 +11,23 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+    //following custom function assign for redirection page according role
+    public function redirect_to_desired_page_according_role(){
+        $user = Auth::user();
+        $id = $user->id;
+        if ($user->isAdmin()) {
+            return '/master';
+        } elseif ($user->isTrainer()) {
+            return '/trainer_show/'.$id;
+
+        } elseif ($user->isTrainee()) {
+            return '/trainee';
+
+        } elseif ($user->isMonitor()) {
+            return '/clients';
+        }
+    }
+    protected $redirectAfterLogout = '/';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -23,10 +41,6 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    
-
-    protected $redirectTo = '/';
-   
 
     /**
      * Create a new authentication controller instance.
@@ -66,5 +80,14 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    //following function will replace the function which is in RedirectsUsers traits
+    public function redirectPath()
+    {
+        if (property_exists($this, 'redirectPath')) {
+            return $this->redirectPath;
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : $this->redirect_to_desired_page_according_role();
     }
 }

@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('admin/layouts/master')
 @section('content')
     <div class="container">
     <div class="row">
@@ -23,8 +23,8 @@
                         <td>{{$data->created_at}}</td>
                         <td>{{$data->updated_at}}</td>
                         <td>
-                            <a href="registration/{{$data->id}}" class="btn btn-primary" type="button"><i class="fa fa-link">Show</i></a>
-                            <a href="registration/{{$data->id}}/edit" class="btn btn-success" type="button"><i class="fa fa-edit">Edit</i></a>
+                            <a href="registration/{{$data->id}}" class="btn btn-primary" type="button"><i class="fa fa-eye"> Show</i></a>
+                            {{--<a href="registration/{{$data->id}}/edit" class="btn btn-success" type="button"><i class="fa fa-edit">Edit</i></a>--}}
                         </td>
                     </tr>
 

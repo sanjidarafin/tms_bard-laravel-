@@ -21,7 +21,7 @@ class CreateInfosTable extends Migration
             $table->string('gender', 10);
             $table->string('trainee_id', 10);
             $table->integer('trainee_login_id')->unsigned();
-            $table->integer('course_id')->unsigned();
+            
             $table->string('institution', 30);
             $table->string('educational_qualification', 100);
             $table->string('service_experience', 50);
@@ -39,17 +39,18 @@ class CreateInfosTable extends Migration
             $table->string('ph_home', 15);
             $table->string('ph_office', 15);
             $table->string('ph_mobile', 15);
-            $table->string('diseases', 55);
+            $table->text('diseases');
             $table->string('soprts', 55);
             $table->string('hobby', 55);
-            $table->string('expertise',50);
+            $table->text('expertise');
             $table->string('interested_game', 55);
             $table->string('height', 10);
             $table->string('weight', 10);
             $table->string('waist_abdomen', 10);
             $table->string('chest', 10);
             $table->string('weight_end_course', 10);
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->string('filepath');
+
             $table->foreign('trainee_login_id')->references('id')->on('users')->onDelete('cascade');
 
         });

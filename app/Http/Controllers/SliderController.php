@@ -38,10 +38,9 @@ class SliderController extends Controller
             $position = Slider::all()->max('position') + 1;
         }
         $slug = uniqid();
-        $file = $request->file('slider_image');        
+        $file = $request->file('slider_image');
         $file->move('uploads/', $slug . '__' .$file->getClientOriginalName());
         $file_text = $slug . '__' .$file->getClientOriginalName();
-        
         $data = [
             'heading_text' => $request->get('heading_text'),
             'paragraph_text' => $request->get('paragraph_text'),

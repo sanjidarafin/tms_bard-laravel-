@@ -30,12 +30,9 @@ class CreateTrainersTable extends Migration
             $table->string('cell_number', 15);
             $table->string('filePath');
 
-            $table->integer('course_id')->unsigned();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
-            
 
             $table->integer('trainer_id')->unsigned();
-            $table->foreign('trainer_id')->references('id')->on('users')->onDelete('cascade');           
+           // $table->foreign('trainer_id')->references('id')->on('trainercourses')->onDelete('cascade');
         });
     }
 

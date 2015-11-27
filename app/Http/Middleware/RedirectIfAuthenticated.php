@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Auth\AuthController;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -35,7 +36,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect('/home');
+            return redirect((new AuthController())->redirect_to_desired_page_according_role());
         }
 
         return $next($request);

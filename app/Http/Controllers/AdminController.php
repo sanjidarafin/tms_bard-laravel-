@@ -8,13 +8,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\HealthFormRequest;
 use App\HealthReport;
 use App\HealthExam;
+
 use App\Trainer;
 use App\Feedback;
 use App\Info;
+use App\TraineeCourse;
+use App\User;
 use Auth;
 use DB;
+
 class AdminController extends Controller
 {
+
     public function feedbackIndex()
     {
         $feedbacks = Feedback::with('trainer')->distinct()->select('trainer_id')->get();
@@ -58,10 +63,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminHome()
-    {
-        return view('admin.layouts.master');
-    }
+
 
 
     public function index()
@@ -196,14 +198,28 @@ class AdminController extends Controller
         return redirect(action('AdminController@edit', $healthInfo->user_id))->with('status', 'The User_id '.$healthInfo->user_id.' has been updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+   
+  
+
+    //following function created by nirupam
+    
+    public function trainees_by_course_id($course_id){
+            
+
+        $trainees = DB::table('traineecourses')
+                    ->join('users', 'users.id', '=', 'traineecourses.trainee_id')
+                    ->where('course_id', '=', $course_id)->get();
+                    
+        return view('admin/admin_trainee/show_trainee_list', compact('trainees'));
     }
+     public function trainee_by_user_id($trainee_id){
+        $trainee = Info::whereTrainee_login_id($trainee_id)->first();
+        return view('admin/admin_trainee/trainee_view')->with('trainee', $trainee);
+        
+    }
+
+
+
+
 }

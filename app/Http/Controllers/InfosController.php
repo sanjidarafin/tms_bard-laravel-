@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Registration;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InfoFormRequest;
-use Illuminate\Support\Facades\Validators;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Info;
+
 use App\Course;
+use App\TraineeCourse;
+use App\Attendance;
+
+//use App\Course;
 //use App\Http\Middleware\Auth;
 //use App\Http\Middleware\TraineeMiddleware;
-use Auth;
 
 class InfosController extends Controller
 {
     public function __construct(){
-        $this->middleware('trainee');
+
+       $this->middleware('trainee');
+
+
     }
     /**
      * Display a listing of the resource.
@@ -25,8 +35,38 @@ class InfosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function course_name_by_course_id($id){
+        return Course::whereId($id)->select('course_name')->first();
+    }
+  public function traineeHome()
+  {
+      $id = Auth::user()->id;
+      $regId = Registration::where('user_id', '=', Auth::user()->id)->pluck('id');
+      $user_id = Auth::user()->id;
+      $course_ids=TraineeCourse::where('trainee_id',$user_id)->select('course_id')->get();
+      //$course_ids=Info::where('trainee_login_id', $user_id)->get();
+      $courseAttendance=[];
+      foreach($course_ids as $course_id){
+          $course_name = $this->course_name_by_course_id($course_id->course_id);
+          if(!empty($course_name)){
+              $absent=Attendance::where('course_id',$course_id->course_id)
+                  ->where('trainee_id',$user_id)
+                  ->where('trainee_attendance','=','A')
+                  ->count('id');
+              $courseAttendance[]=array('course_name'=>$course_name->course_name,'absent'=>$absent);
+          }
 
+      }
 
+      $info = Info::wheretrainee_login_id($user_id)->first();
+      
+
+      return view('trainee.trainee',compact('regId','courseAttendance','info'))->with('id', $id);
+
+      //dd($regId);
+      //return view('trainee.trainee',compact('regId'))->with('id', $id);
+
+  }
 
    public function index()
     {
@@ -40,11 +80,21 @@ class InfosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $courses = Course::all();
-        $user = Auth::User();
-        $user_id = $user->id;
+    {   
+        $user_id = Auth::User()->id;
+        $trainee_info = Info::whereTrainee_login_id($user_id)->get();
+        if($trainee_info->isEmpty()){
+            $user_name = $this->trainee_name_by_user_id($user_id);
+            return view('trainee.create')->with('user_id', $user_id)->with('user_name', $user_name);
+        }else{
+            $trainee_info = Info::whereTrainee_login_id($user_id)->firstOrFail();
+            return redirect('trainee_profile/'. $trainee_info->trainee_login_id .'/edit_profile');
+        }
 
-        return view('trainee.create', compact('courses'))->with('user_id', $user_id);
+
+    }
+    public function trainee_name_by_user_id($id){
+        return User::whereId($id)->firstOrFail()->name;
     }
 
     /**
@@ -69,6 +119,19 @@ class InfosController extends Controller
        //$diseaseString = implode(",",$request->get('diseases[]') );
         //$expertString = implode(",",$request->get('expertise[]'));
         $slug = uniqid();
+
+         $input=$request->all();
+
+        if(isset($input['image'])) {
+            $Image = $input['image'];
+            //dd($Image);
+            $Image = $this->imageUpload($Image);
+            //dd($Image);
+            $input['image']=$Image;
+        }
+        else{
+            $Image = "trainer_img/default.jpg";
+        }
 
         $info = new Info(array(
         'name' => $request->get('name'),
@@ -103,13 +166,14 @@ class InfosController extends Controller
         'waist_abdomen' => $request->get('waist_abdomen'),
         'chest' => $request->get('chest'),
         'weight_end_course' => $request->get('weight_end_course'),
+        'filepath' => $Image,
         'slug' => $slug,
 
-         'course_id'=>$request->get('training_name'),
+         
         ));
         $info->save();
 
-        return redirect('/fill_the_form')->with('status', 'Congratulation!! Your form submission is successfull!! ');
+        return redirect('trainee');
 
     }
 
@@ -120,32 +184,80 @@ class InfosController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show()
+    public function show($id)
     {
 
-         $info = Info::whereSlug($slug)->firstOrFail();
+         $info = Info::whereId($id)->firstOrFail();
+
          return view('infos.show', compact('info'));
     }
     
     //trainee profile
-    public function show_profile($slug)
+    public function show_profile($id)
     {
 
-         $info = Info::whereSlug($slug)->firstOrFail();
+         // $info = Info::whereId($id)->firstOrFail();
+        $info = Info::whereTrainee_login_id($id)->firstOrFail();
+         /*$info = DB::table('users')
+              ->join('infos','users.id','=','infos.trainee_login_id')
+              ->where('infos.trainee_login_id',$id)
+              ->first();
+              return $info;*/
+
+        // dd($info);
+        //return $info;
          return view('trainee.show', compact('info'));
     }
 
-     public function edit_profile($slug)
+     public function edit_profile($id)
     {
-        $info = Info::whereSlug($slug)->firstOrFail();
+        $info = Info::whereTrainee_login_id($id)->firstOrFail();
+
+        $expertise = unserialize($info->expertise);
+        if($expertise == null){
+            $expertise = ['hello', 'world'];
+        }
+        $diseases = unserialize($info->diseases);
+        if($diseases == null){
+            $diseases = ['hello', 'world'];
+        }
+        //return var_dump($expertise);
+        //return dd($diseases);
         $user = Auth::User();
         $user_id = $user->id;
-        return view('trainee.edit', compact('info'))->with('user_id', $user_id);
+        return view('trainee.edit', compact('info','expertise','diseases'))->with('user_id', $user_id);
     }
 
-    public function update_profile($slug, InfoFormRequest $request)
+    public function update_profile($id, InfoFormRequest $request)
     {
-        $info = Info::whereSlug($slug)->firstOrFail();
+
+        $input=$request->all();
+        $expertisearray=$input['expertise'];
+        $expertiseString =$request->get('expertise');
+        $expertise = serialize($expertiseString);
+
+        $diseasearray=$input['diseases'];
+        //return dd($diseasearray);
+        $diseasesString =$request->get('diseases');
+        $diseases = serialize($diseasesString);
+        //return dd($diseases);
+
+
+
+
+        
+        //dd($diseases);
+        if(isset($input['image'])) {
+        $Image=$input['image'];
+        //dd($Image);
+        $imagePath=$this->imageUpload($Image); //call public function imageUpload for small img
+        }
+        else{
+            $imagePath = Info::where('id', '=', $id)->pluck('filepath');
+            //dd($imagePath);
+        }
+
+        $info = Info::whereTrainee_login_id($id)->firstOrFail();
         $info->name = $request->get('name');
         $info->gender = $request->get('gender');
         $info->trainee_id = $request->get('trainee_id');
@@ -167,9 +279,10 @@ class InfosController extends Controller
         $info->ph_home = $request->get('ph_home');
         $info->ph_office = $request->get('ph_office');
         $info->ph_mobile = $request->get('ph_mobile');
-       
+        $info->diseases = $diseases;
         $info->soprts = $request->get('soprts');
         $info->hobby = $request->get('hobby');
+        $info->expertise = $expertise;
   
         $info->interested_game = $request->get('interested_game');
         $info->height = $request->get('height');
@@ -177,6 +290,7 @@ class InfosController extends Controller
         $info->waist_abdomen = $request->get('waist_abdomen');
         $info->chest= $request->get('chest');
         $info->weight_end_course = $request->get('weight_end_course');
+        $info->filepath=$imagePath;
        
        if($request->get('status') != null) {
             $info->status = 0;
@@ -184,7 +298,7 @@ class InfosController extends Controller
             $info->status = 1;
         }
         $info->save();
-        return redirect(action('InfosController@edit', $info->slug))->with('status', 'The trainees information has been updated!');
+        return redirect(action('InfosController@edit_profile', $info->trainee_login_id))->with('status', 'The trainees information has been updated!');
         }
 
 
@@ -194,9 +308,9 @@ class InfosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $info = Info::whereSlug($slug)->firstOrFail();
+        $info = Info::whereId($id)->firstOrFail();
         return view('infos.edit', compact('info'));
     }
 
@@ -207,9 +321,9 @@ class InfosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   public function update($slug, InfoFormRequest $request)
+   public function update($id, InfoFormRequest $request)
     {
-        $info = Info::whereSlug($slug)->firstOrFail();
+        $info = Info::whereId($id)->firstOrFail();
         $info->name = $request->get('name');
         $info->gender = $request->get('gender');
         $info->trainee_id = $request->get('trainee_id');
@@ -247,7 +361,7 @@ class InfosController extends Controller
             $info->status = 1;
         }
         $info->save();
-        return redirect(action('InfosController@edit', $info->slug))->with('status', 'The trainees information has been updated!');
+        return redirect(action('InfosController@edit', $info->id))->with('status', 'The trainees information has been updated!');
         }
 
     /**
@@ -260,4 +374,29 @@ class InfosController extends Controller
     {
         //
     }
+
+    public function imageUpload($Image)
+    {
+
+        $rules=array('image'=>'image');
+        $validate=Validator::make(array("productImage"=>$Image),$rules);
+        $path="Trainee_img";
+        if($validate)
+        {
+            $imageOriginalName=$Image->getClientOriginalName();//get image full name
+            $basename = substr($imageOriginalName, 0, strrpos($imageOriginalName, "."));//get image name without extension
+            $basename=str_replace(" ", "", $basename);
+            $extension =$Image->getClientOriginalExtension();//get image extension only
+            $imageName=$basename.date("YmdHis").'.'.$extension;//make new name
+
+            $imageMoved=$Image->move($path, $imageName);
+            if($imageMoved)
+            {
+                $imagePath=$path.'/'.$imageName;
+                return $imagePath;
+            }
+
+        }
+    }
+    
 }

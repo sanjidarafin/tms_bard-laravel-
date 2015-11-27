@@ -52,7 +52,10 @@
                <div class="alert alert-success">
                    {{ session('status') }}
                </div>
-           @endif        
+           @endif    
+           @if(!$id) 
+                <p>There is no</p>
+            @endif    
            <form id="contactForm" class="form-horizontal" method="post">
                   <!-- #messages is where the messages are placed inside -->
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">  
@@ -101,7 +104,7 @@
                         <select class="form-control" name="marital_status" id="sel1">
                             @if($healthInfo->marital_status == 'Married')
                                 <option value="Married" selected>Married</option>
-                                <option value="Married" selected>Married</option>
+                                <option value="Married">Unmarried</option>
                             @elseif($healthInfo->marital_status == 'Unmarried')
                                 <option value="Unmarried" selected>Unmarried</option>
                                 <option value="Married">Married</option>

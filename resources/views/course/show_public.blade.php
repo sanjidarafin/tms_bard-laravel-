@@ -50,6 +50,9 @@
 	   			
 	   			<div class="col-md-4">
 	   				<div class="well">
+						<div>
+							<img src="{{asset ($courses->course_image) }}" style="width: 100%; height: auto" alt="Course Image">
+						</div>
 	   					<h3> Duration:</h3>
 	                    <p>  {!! $courses->duration !!} </p>
 	                    <h3> Course Fee:</h3>

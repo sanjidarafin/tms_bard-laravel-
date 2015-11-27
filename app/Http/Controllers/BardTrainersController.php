@@ -25,6 +25,13 @@ class BardTrainersController extends Controller
         return view('bardtrainers.index', compact('bardtrainers'));
         
     }
+    public function faculty()
+    {   
+      
+        $bardtrainers = BardTrainer::all();
+        return view('bardtrainers.bardtrainer', compact('bardtrainers'));
+        
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -66,10 +73,12 @@ class BardTrainersController extends Controller
         'educational_qualification' => $request->get('educational_qualification'),
         'previous_experience' => $request->get('previous_experience'),
         'email' => $request->get('email'),
-        'date_of_birth' => $request->get('date_of_birth'),
         'country' => $request->get('country'),
         'skill_set' => $request->get('skill_set'),
         'cell_number' => $request->get('cell_number'),
+        'date_of_birth'=>$request->get('date'),
+        'description'=>$request->get('description'),
+
         'filePath' => $Image,
         'slug' => $slug
     ));
@@ -77,7 +86,7 @@ class BardTrainersController extends Controller
 
     $bardtrainer->save();
 
-    return redirect('/bardtrainer_create')->with('status', 'Your data has been saved! ');
+    return redirect('/bardtrainers')->with('status', 'Your data has been saved! ');
 
     }
 
@@ -112,8 +121,10 @@ class BardTrainersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($slug, BardTrainerFormRequest $request)
-{       $input=$request->all(); 
+   public function update($slug, BardTrainerFormRequest $request)
+{        
+
+        $input=$request->all();
         if(isset($input['image'])) {
             $Image=$input['image'];
             //dd($Image);
@@ -132,28 +143,32 @@ class BardTrainersController extends Controller
     $bardtrainer->gender = $request->get('gender');
     $bardtrainer->educational_qualification = $request->get('educational_qualification');
     $bardtrainer->previous_experience = $request->get('previous_experience');
-    $bardtrainer->date_of_birth = $request->get('date_of_birth');
+    $bardtrainer->date_of_birth = $request->get('date');
     $bardtrainer->cell_number = $request->get('cell_number');
-    $trainer->filePath=$imagePath;
+    $bardtrainer->description = $request->get('description');
+    $bardtrainer->filePath=$imagePath;
     if($request->get('status') != null) {
         $bardtrainer->status = 0;
     } else {
         $bardtrainer->status = 1;
     }
     $bardtrainer->save();
-    return redirect(action('BardTrainersController@edit', $bardtrainer->slug))->with('status', 'The BARD trainer status has been updated!');
+    return redirect(action('BardTrainersController@index', $bardtrainer->slug))->with('status', 'The BARD trainer status has been updated!');
 
 }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+    $bardtrainer = BardTrainer::whereSlug($slug)->firstOrFail();
+
+
+     $bardtrainer->delete();
+    return redirect('/bardtrainers')->with('status', 'Trainer  '.$slug.' has been deleted!');
     }
  public function imageUpload($Image)
     {

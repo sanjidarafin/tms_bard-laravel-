@@ -3,7 +3,7 @@
 <style>
 
     hr{
-        background-color: purple;
+        background-color: burlywood;
     }
 
     div {
@@ -23,11 +23,12 @@
 </style>
 
 @section('content')
-    <div class="container col-md-10 col-md-offset-1">
+    <div class="container col-md-12 col-md-offset-0">
         <div class="well well bs-component">
             <div class="content">
-
-                <div class="well well bs-component" style="background-color: #4DB6AC; color: white;">
+                <div class="well well bs-component" style="background-color: #43A047; color:white; font-size:larger" align="center"><h1 align="center">Announcement</h1></div>
+                <div class="well well bs-component">
+                    <label>Heading</label><hr>
                     <b>{!! $announcement->heading !!}</b></br><br>
                     <b>Published On:&nbsp;{!! $announcement->created_at  !!}</b>
                 </div>

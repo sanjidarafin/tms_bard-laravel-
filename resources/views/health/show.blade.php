@@ -20,6 +20,14 @@
 @show
 
 @section('content')
+    @if($healthInfo == null)
+        <div class="container">
+            <div class="well">
+                <h2>Trainee haven't fill the health info Please fill the health info <a href="{{ URL::to('/UserHealthCreateA') }}">Click Here</a></h2>
+            </div>
+        </div>
+    @else
+
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
             <fieldset>
@@ -30,9 +38,15 @@
                     <h4><b><br>3rd FTFL Foundation Training Course<br></b></h4>
                 </div>
                 <br>
+                
+                <div class="form-group">
+                       
+                        <label for="title" class="col-lg-2 control-label">Participants: </label>
+                        <h4><b>FTFL Trainees of Bangladesh Computer Council</b></h4>
+                    </div>
 
                 <div class="form-group">
-                    <br>
+                    
                     <label for="title" class="col-lg-2 control-label">Duration: </label>
                     <h4><b>01 August-29 October 2015</b></h4>
                 </div>
@@ -51,12 +65,15 @@
                     {{ session('status') }}
                 </div>
             @endif
+            
+            
+            
             <form id="contactForm" class="form-horizontal" method="post">
                 <!-- #messages is where the messages are placed inside -->
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label"><h4 align ="left">ID Code:</h4></label>
+                    <label class="col-md-3 control-label"><h4><b>ID Code:</b></h4></label>
                     <div class="col-md-6">
                         <h4><b>{!! $healthInfo->user_id !!}</b></h4>
                     </div>
@@ -193,7 +210,7 @@
             </form>
         </div>
     </div>
-
+    @endif
     <script>
         $(document).ready(function() {
             $('#contactForm').bootstrapValidator({

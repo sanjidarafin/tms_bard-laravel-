@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master_trainer/master')
 @section('content')<br>
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
@@ -23,8 +23,8 @@
                 @foreach($exams as $exam)
                     <tr>
                         <td>{{$exam->title}}</td>
-                        <td><a href="marksheet/{{$exam->id}}/traineesOfThatExam">Add Marks</a></td>
-                        <td><a href="listOfstudentsAndMarks">View Marks</a></td>
+                        <td><a href="marksheet/{{$exam->id}}/{{$exam->course_id}}/traineesOfThatExam">Add Marks</a></td>
+                        <td><a href="listOfstudentsAndMarks/{{$exam->course_id}}">View Marks</a></td>
                     </tr>
                 @endforeach
                 </tbody>

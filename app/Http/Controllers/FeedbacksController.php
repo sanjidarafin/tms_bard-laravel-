@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackFormRequest;
 use App\Trainer;
 use App\Feedback;
+use App\Course;
+use App\UserTraining;
 use Auth;
 class FeedbacksController extends Controller
 {
@@ -17,19 +19,7 @@ class FeedbacksController extends Controller
         $this->middleware('trainee');
 
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {      
-        $feedbacks = Feedback::with('trainer')->distinct()->select('trainer_id')->get();
-        $trainers = Trainer::all();
-     
-        return view('feedbacks.index', compact('feedbacks','trainers'));
-        
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,9 +28,20 @@ class FeedbacksController extends Controller
      */
     public function create()
     {
-        $trainers = Trainer::all();
+        $id = Auth::user()->id;
+        //dd($id);
+        $trainingId = UserTraining::where('user_id', '=', $id)->FirstOrFail()->trainings_id;
+       // dd($trainingId);
+        $trainers = DB::table('users')
+                ->join('trainercourses','trainercourses.trainer_id','=','users.id') 
+                ->join('courses', 'courses.id', '=', 'trainercourses.course_id')
+                ->where('courses.training_id', $trainingId)
+                ->get();
+          //dd($trainers); 
         return view('feedbacks.create',compact('trainers'));
     }
+    
+    
 
     /**
      * Store a newly created resource in storage.
@@ -64,75 +65,15 @@ class FeedbacksController extends Controller
            'speakers_knowledge' => $request->get('B3'),
            'comments' => $request->get('comments'),
         ));
+        //dd($feedback);
         if (Feedback::where('trainee_id', '=', $traineeId)->where('trainer_id', '=',$request->get('trainer_id'))->exists()) {
-           return redirect('/feedbackIndex')->with('status', 'You have already done!');
+           return redirect('/trainee')->with('status', 'You have already given feedback');
         }
         else{
             $feedback->save();
-            return redirect('/feedbackIndex')->with('status', 'Your information has been created!');
+            return redirect('/trainee')->with('status', 'Your feedback has been submitted!');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $feedbacks = Feedback::where('trainer_id', '=', $id)
-                 ->with('trainer')
-                ->join('trainers', 'trainers.id', '=', 'feedbacks.trainer_id')
-                ->select('*',DB::raw('AVG(voice_range) as voice_range,
-                            AVG(voice_clearity) as voice_clearity,
-                            AVG(communication_skills) as communication_skills,
-                            AVG(rapport_building) as rapport_building,
-                            AVG(topic_usefulness) as topic_usefulness,
-                            AVG(interaction) as interaction,
-                            AVG(material_organization) as material_organization,
-                            AVG(speakers_knowledge) as speakers_knowledge'))
-                ->get();
-      
-        foreach($feedbacks as $f){
-                $sum= $f->voice_range+$f->voice_clearity+$f->communication_skills+$f->rapport_building+$f->topic_usefulness+$f->interaction+$f->material_organization+$f->speakers_knowledge;
-    }
-        $avg = $sum/8;
-       
-        return view('feedbacks.show', compact('feedbacks', 'avg'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 }

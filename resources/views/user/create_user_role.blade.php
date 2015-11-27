@@ -21,27 +21,27 @@
                         <fieldset>
                             <br>
                             <div class="form-group">
-                                <label for="role_name" class="col-lg-2 control-label">Role name</label>
+                                <label for="role_name" class="col-lg-2 control-label">Role name <sup style="color: red;">*</sup></label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="role_name" placeholder="Role Name" name="role_name" required>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="role_slug" class="col-lg-2 control-label">Role slug</label>
+                                <label for="role_slug" class="col-lg-2 control-label">Role slug <sup style="color: red;">*</sup></label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="role_slug" placeholder="Role Slug" name="role_slug" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="role_level" class="col-lg-2 control-label">Role Level</label>
+                                <label for="role_level" class="col-lg-2 control-label">Role Level <sup style="color: red;">*</sup></label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="role_level" placeholder="Role Level" name="role_level" required>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="role_description" class="col-lg-2 control-label">Role Description</label>
+                                <label for="role_description" class="col-lg-2 control-label">Role Description <sup style="color: red;">*</sup></label>
                                 <div class="col-lg-10">
                                     <textarea class="form-control" rows="5" id="role_description" name="role_description" placeholder="Role Description"></textarea>
                                 </div>

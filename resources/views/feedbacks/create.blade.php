@@ -26,13 +26,13 @@
                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Speaker's Name&nbsp;<span class=red-star" style="color:red">*</span></label>
+                                <label class="col-md-3 control-label">Speaker's Name</label>
 
                                 <div class="col-md-6">
 
                                     <select class="form-control" name="trainer_id" id="sel1">
                                        @foreach($trainers as $trainer)
-                                        <option value="{{ $trainer->id }}">{{ $trainer->name }}</option>
+                                        <option value="{{ $trainer->trainer_id }}">{{ $trainer->name }}</option>
                                         @endforeach
                                     </select>
 
@@ -64,109 +64,109 @@
                            </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A1. S/he spoke loud enough &nbsp;<span class="red-star" style="color:red">*</span> </b> </h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A1. S/he spoke loud enough </b></h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="A1" value="5" <?php if(Input::old('A1')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A1" value="4" <?php if(Input::old('A1')== "4") { echo 'checked="checked"'; } ?> /> </label>
-                                            <label><input type="radio" name="A1" value="3" <?php if(Input::old('A1')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A1" value="2" <?php if(Input::old('A1')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A1" value="1" <?php if(Input::old('A1')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="A1" value="5" /> </label>
+                                            <label><input type="radio" name="A1" value="4" /> </label>
+                                            <label><input type="radio" name="A1" value="3" /> </label>
+                                            <label><input type="radio" name="A1" value="2" /> </label>
+                                            <label><input type="radio" name="A1" value="1" /> </label>
                                         </div>
 
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A2. S/he spoke clearly and at a good pace</b>&nbsp;<span class=red-star" style="color:red">*</span> </h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A2. S/he spoke clearly and at a good pace</b> </h4></label>
 
                                         <div class="radio">
-                                            <label><input type="radio" name="A2" value="5" <?php if(Input::old('A2')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A2" value="4"  <?php if(Input::old('A2')== "4") { echo 'checked="checked"'; } ?> /> </label>
-                                            <label><input type="radio" name="A2" value="3"  <?php if(Input::old('A2')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A2" value="2"  <?php if(Input::old('A2')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A2" value="1"  <?php if(Input::old('A2')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="A2" value="5" /> </label>
+                                            <label><input type="radio" name="A2" value="4" /> </label>
+                                            <label><input type="radio" name="A2" value="3" /> </label>
+                                            <label><input type="radio" name="A2" value="2" /> </label>
+                                            <label><input type="radio" name="A2" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A3. S/he spoke loud enough. S/he used good eye contact,body language and non-verbal communication skills </b>&nbsp;<span class=red-star" style="color:red">*</span>  </h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A3. S/he spoke loud enough. S/he used good eye contact,body language and non-verbal communication skills</b> </h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="A3" value="5"  <?php if(Input::old('A3')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A3" value="4" <?php if(Input::old('A3')== "4") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A3" value="3" <?php if(Input::old('A3')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A3" value="2" <?php if(Input::old('A3')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A3" value="1" <?php if(Input::old('A3')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="A3" value="5" /> </label>
+                                            <label><input type="radio" name="A3" value="4" /> </label>
+                                            <label><input type="radio" name="A3" value="3" /> </label>
+                                            <label><input type="radio" name="A3" value="2" /> </label>
+                                            <label><input type="radio" name="A3" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"> <h4 align = "left"><b>A4. Speaker's Rapport building with participants</b><span class=red-star" style="color:red">*</span></h4></label>
+                                    <label class="col-lg-6 control-label"> <h4 align = "left"><b>A4. Speaker's Rapport building with participants</b> </h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="A4" value="5" <?php if(Input::old('A4')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A4" value="4" <?php if(Input::old('A4')== "4") { echo 'checked="checked"'; } ?> /> </label>
-                                            <label><input type="radio" name="A4" value="3" <?php if(Input::old('A4')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A4" value="2" <?php if(Input::old('A4')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A4" value="1" <?php if(Input::old('A4')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="A4" value="5" /> </label>
+                                            <label><input type="radio" name="A4" value="4" /> </label>
+                                            <label><input type="radio" name="A4" value="3" /> </label>
+                                            <label><input type="radio" name="A4" value="2" /> </label>
+                                            <label><input type="radio" name="A4" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A5. Speaker's Interaction with Participants</b>&nbsp;<span class=red-star" style="color:red">*</span></h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> A5. Speaker's Interaction with Participants</b></h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="A5" value="5" <?php if(Input::old('A5')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A5" value="4" <?php if(Input::old('A5')== "4") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A5" value="3" <?php if(Input::old('A5')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A5" value="2" <?php if(Input::old('A5')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="A5" value="1"<?php if(Input::old('A5')== "1") { echo 'checked="checked"'; } ?> /> </label>
+                                            <label><input type="radio" name="A5" value="5" /> </label>
+                                            <label><input type="radio" name="A5" value="4" /> </label>
+                                            <label><input type="radio" name="A5" value="3" /> </label>
+                                            <label><input type="radio" name="A5" value="2" /> </label>
+                                            <label><input type="radio" name="A5" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <legend>B. Presentation Content</legend>
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"> <b> B1. Presentation topic was useful and of interest to me personally</b>&nbsp;<span class=red-star" style="color:red">*</span> </h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"> <b> B1. Presentation topic was useful and of interest to me personally</b> </h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="B1" value="5" <?php if(Input::old('B1')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B1" value="4" <?php if(Input::old('B1')== "4") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B1" value="3" <?php if(Input::old('B1')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B1" value="2" <?php if(Input::old('B1')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B1" value="1" <?php if(Input::old('B1')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="B1" value="5" /> </label>
+                                            <label><input type="radio" name="B1" value="4" /> </label>
+                                            <label><input type="radio" name="B1" value="3" /> </label>
+                                            <label><input type="radio" name="B1" value="2" /> </label>
+                                            <label><input type="radio" name="B1" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b>B2. The presentation meterial was well-organized and easy to follow </b>&nbsp;<span class=red-star" style="color:red">*</span></h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b>B2. The presentation meterial was well-organized and easy to follow </b></h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="B2" value="5" <?php if(Input::old('B2')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B2" value="4" <?php if(Input::old('B2')== "4") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B2" value="3" <?php if(Input::old('B2')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B2" value="2" <?php if(Input::old('B2')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B2" value="1" <?php if(Input::old('B2')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="B2" value="5" /> </label>
+                                            <label><input type="radio" name="B2" value="4" /> </label>
+                                            <label><input type="radio" name="B2" value="3" /> </label>
+                                            <label><input type="radio" name="B2" value="2" /> </label>
+                                            <label><input type="radio" name="B2" value="1" /> </label>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> B3. The Speaker was prepared and Knowledgeable on the topic </b>&nbsp;<span class=red-star" style="color:red">*</span></h4></label>
+                                    <label class="col-lg-6 control-label"><h4 align = "left"><b> B3. The Speaker was prepared and Knowledgeable on the topic </b></h4></label>
                                         <div class="radio">
-                                            <label><input type="radio" name="B3" value="5" <?php if(Input::old('B3')== "5") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B3" value="4" <?php if(Input::old('B3')== "4") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B3" value="3" <?php if(Input::old('B3')== "3") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B3" value="2" <?php if(Input::old('B3')== "2") { echo 'checked="checked"'; } ?>/> </label>
-                                            <label><input type="radio" name="B3" value="1" <?php if(Input::old('B3')== "1") { echo 'checked="checked"'; } ?>/> </label>
+                                            <label><input type="radio" name="B3" value="5" /> </label>
+                                            <label><input type="radio" name="B3" value="4" /> </label>
+                                            <label><input type="radio" name="B3" value="3" /> </label>
+                                            <label><input type="radio" name="B3" value="2" /> </label>
+                                            <label><input type="radio" name="B3" value="1" /> </label>
                                         </div>
 
                                 </div>
 
-                            <legend>Additional Comments(If Any):&nbsp;<span class=red-star" style="color:red">*</span></legend>
+                            <legend>Additional Comments(If Any):</legend>
 
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <textarea align="left" class="form-control" rows="5" id="comment" name = "comments">{{old('comment')}}</textarea>
+                                    <textarea align="left" class="form-control" rows="5" id="comment" name = "comments"></textarea>
                                 </div>
                             </div>
 

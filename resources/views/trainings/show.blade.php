@@ -3,7 +3,7 @@
 <style>
     b{
         font-size: large;
-        color: green;
+        color: #388E3C;
     }
 
     label{
@@ -22,13 +22,13 @@
 
 
 </style>
-    <script>
-        function check(){
-            return confirm("Are You Sure? You Want To Delete This Training's Information.");
-        }
-    </script>
+<script>
+    function check(){
+        return confirm("Are You Sure? You Want To Delete This Training's Information.");
+    }
+</script>
 @section('content')
-    <div class="container col-md-12">
+    <div class="container col-md-12 col-md-offset-0">
         <header align="center">
             <b>Bangladesh Academy For Rural Development(BARD)</b><br>
             <b>Kotbari,Comilla,Bangladesh</b><br>
@@ -36,8 +36,8 @@
         </header><hr>
 
 
-        <div class="col-md-10 col-md-offset-2">
-            <div class="col-md-5">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="col-md-6">
 
                 <label>Training Type</label>
                 <p>{!! $training->training_type  !!}</p><hr>
@@ -69,7 +69,7 @@
 
 
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <label>Resources Provided by to a Particular Training</label>
                 <p>{!! $training->provided_resources !!}</p><hr>
 
@@ -86,24 +86,9 @@
                         <i>Written by &nbsp;&nbsp;{!! $testimonial->author_name !!}</i><hr>
                     @endforeach
                 @endif
-
-
-
                 <label>Responsible person for Trainees</label>
                 <p>{!! $training->responsible_person !!}</p>
             </div>
-        </div>
-
-        <div class="col-md-10 col-md-offset-2">
-            <a href="{!! action('TrainingsController@edit', $training->id) !!}" class="btn btn-info pull-left">Edit</a>
-            <form method="post" action="{!! action('TrainingsController@destroy', $training->id) !!}" class="pull-left">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                <div class="form-group">
-                    <div>
-                        <button type="submit" class="btn btn-warning" onclick="return check()">Delete</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 @endsection

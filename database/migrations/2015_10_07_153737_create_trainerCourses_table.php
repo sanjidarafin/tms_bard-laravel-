@@ -16,6 +16,7 @@ class CreateTrainerCoursesTable extends Migration
             $table->increments('id');
             $table->integer('trainer_id')->unsigned();
             $table->integer('course_id')->unsigned();
+            $table->unique('trainer_id', 'trainer_id');
             $table->timestamps();
         });
     }

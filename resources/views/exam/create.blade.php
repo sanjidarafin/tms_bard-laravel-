@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('master_trainer/master')
 @section('content')
     <br>
     <div class="container">

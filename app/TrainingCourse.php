@@ -8,4 +8,6 @@ class TrainingCourse extends Model
 {
     protected $table='trainingcourse';
     protected $fillable=['course_id','trainings_id'];
+    
+    
 }

@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master_trainer/master')
 @section('content')<br>
     <div class="container col-md-8 col-md-offset-2">
         @if (session('status'))
@@ -10,7 +10,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>DB ID</th>
                 <th>Trainee</th>
                 <th>Mark</th>
                 <th>Edit</th>
@@ -18,10 +18,10 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($marksheets as $marksheet)
+            @foreach($marksheets as $key=>$marksheet)
                 <tr>
                     <td>{{$marksheet->id}}</td>
-                    <td>{{$marksheet->trainee}}</td>
+                    <td>{{$marksheet->name}}</td>
                     <td>{{$marksheet->mark}}</td>
                     <td><a href="/marksheet/{{$marksheet->id}}/edit" class="btn btn-primary">Edit</a></td>
                     <td>

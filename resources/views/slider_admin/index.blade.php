@@ -1,8 +1,8 @@
 @extends('admin/layouts/master')
 @section('style')
 	.slider_image img {
-		height: 150px;
-		width: auto;
+		height: 100px;
+		max-width: 150px;
 	}
 @endsection
 @section('content')
@@ -14,12 +14,23 @@
 <br><br>
 	<div class="container">
 		<div class="col-md-9">
+			@if($all_slider->isEmpty())
+				<h1> You didn't add any slider yet</h1>
+				@else
 			<table class="table slider_image">
 				<tbody>
+				<tr>
+					<th scope="row">Position</th>
+					<th>slider_image</th>
+					<th>slier_name</th>
+					<th>Action</th>
+					<th>Changing Position</th>
+				</tr>
 				@foreach($all_slider as $slider)
 					<tr>
 						<td scope="row">{{ $slider->position }}</td>
-						<td><img src="{!! asset('uploads/'.$slider->slider_image) !!}"></td>
+						<td><img class="img-thumbnail" src="{!! asset('uploads/'.$slider->slider_image) !!}"></td>
+						<td>{{ $slider->heading_text }}</td>
 						<td>
 							<form method="post" action="{{ URL::to('/slider/'.$slider->id.'/delete') }}">
 								<input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -41,6 +52,7 @@
 				</tbody>
 
 			</table>
+				@endif
 		</div>
 
 	</div>

@@ -101,7 +101,7 @@
                         <select class="form-control" name="marital_status" id="sel1">
                             <?php if($healthInfo->marital_status == 'Married'): ?>
                                 <option value="Married" selected>Married</option>
-                                <option value="Married" selected>Married</option>
+                                <option value="Married">Unmarried</option>
                             <?php elseif($healthInfo->marital_status == 'Unmarried'): ?>
                                 <option value="Unmarried" selected>Unmarried</option>
                                 <option value="Married">Married</option>
@@ -269,4 +269,4 @@ $(document).ready(function() {
     </script>
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layout.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('master.trainee_master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

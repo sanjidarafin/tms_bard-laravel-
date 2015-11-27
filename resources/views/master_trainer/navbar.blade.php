@@ -14,13 +14,14 @@
         <!-- Navbar Right -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-
-                <li class="@if(isset($trainer))active @endif"><a href="{{ URL::to('/trainer') }}" class="">HOME</a></li>
+                <?php $id = Auth::user()->id; ?>
+                <li class="@if(isset($trainer))active @endif"><a href="{{ URL::to('/trainer_show/'. $id) }}" class="">HOME</a></li>
+                <li class="@if(isset($addexam))active @endif"><a href="{{ URL::to('/exam') }}" class="">EXAM</a></li>
                 <li class="@if(isset($addexam))active @endif"><a href="{{ URL::to('/exam/create') }}" class="">ADD EXAM</a></li>
                 <li class="@if(isset($marksheet))active @endif"><a href="{{ URL::to('/marksheet') }}" class="">MARKS</a> </li>
-                <li class="@if(isset($updatetrainee))active @endif"><a href="{{ URL::to('#') }}" class="">UPDATE TRAINEE</a></li>
-                <li class="@if(isset($traineeattendence))active @endif"><a href="{{ URL::to('#') }}" class="">TRAINEE ATTENDENCE</a> </li>
-                <li class="@if(isset($traineeattendence))active @endif"><a href="{{ URL::to('#') }}" class="">LOGOUT</a> </li>
+
+                <li class="@if(isset($traineeattendence))active @endif"><a href="{{ URL::to('/attendance_preform') }}" class="">TRAINEE ATTENDENCE</a> </li>
+                <li class="@if(isset($traineeattendence))active @endif"><a href="{{ URL::to('auth/logout') }}" class="">LOGOUT</a> </li>
 
             </ul>
         </div>

@@ -35,7 +35,9 @@ class TrainingFormRequest extends Request
             'accommodation'=>'required',
             'daily_schedule'=>'required',
             'fees_structure'=>'required',
-            'responsible_person'=>'required'
+            'responsible_person'=>'required',
+            //'image_path'=>'required'
+
         ];
     }
 }

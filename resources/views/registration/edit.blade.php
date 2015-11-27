@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('master.trainee_master')
 @section('content')
 <br>
     <div class="container">
@@ -85,11 +85,11 @@
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('telephone', 'Telephone:')!!}
-                                        {!! Form::text('telephone', $data->telephone, array('class' => 'form-control')) !!}
+                                        {!! Form::number('telephone', $data->telephone, array('class' => 'form-control')) !!}
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('fax', 'Fax:')!!}
-                                        {!! Form::text('fax', $data->fax, array('class' => 'form-control')) !!}
+                                        {!! Form::number('fax', $data->fax, array('class' => 'form-control')) !!}
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('e-mail', 'E-mail:')!!}
@@ -97,7 +97,7 @@
                                     </div>
                                     <div class="form-group">
                                         {!! Form::label('mobile', 'Mobile:')!!}
-                                        {!! Form::text('mobile', $data->mobile, array('class' => 'form-control')) !!}
+                                        {!! Form::number('mobile', $data->mobile, array('class' => 'form-control')) !!}
                                     </div>
 
                                     <h3>Educational Qualification</h3>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('contact_person_tel', 'Telephone/Mobile:')!!}
-                                    {!! Form::text('contact_person_tel', $data->contact_person_tel, array('class' => 'form-control')) !!}
+                                    {!! Form::number('contact_person_tel', $data->contact_person_tel, array('class' => 'form-control')) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('participant_rel', 'Relation with the Participant:')!!}

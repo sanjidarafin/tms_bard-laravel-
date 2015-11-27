@@ -16,14 +16,10 @@ class CreateAttendancesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->date('day');
-            
             $table->string('session_id');
-
-           $table->string('trainee_id');
-
+            $table->string('trainee_id');
             $table->string('session_name');
             $table->string('trainee_attendance');
-
             $table->integer('course_id')->unsigned();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 

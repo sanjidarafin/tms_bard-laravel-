@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('admin.layouts.master')
 @section('title', 'Trainers')
 @section('content')
 	<div class="container col-md-8 col-md-offset-2">

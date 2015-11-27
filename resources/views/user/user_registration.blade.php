@@ -26,38 +26,38 @@
                             {!! csrf_field() !!}
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Name</label>
+                                <label class="col-md-4 control-label">Name <sup style="color: red;">*</sup></label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">E-Mail Address</label>
+                                <label class="col-md-4 control-label">E-Mail Address <sup style="color: red;">*</sup></label>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" value="{{ old('email') }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
+                                <label class="col-md-4 control-label">Password <sup style="color: red;">*</sup></label>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Confirm Password</label>
+                                <label class="col-md-4 control-label">Confirm Password <sup style="color: red;">*</sup></label>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password_confirmation">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Select User Role</label>
+                                <label class="col-md-4 control-label">Select User Role <sup style="color: red;">*</sup></label>
                                 <div class="col-md-6">
                                     <select name="role_id" id="select_user" class="form-control">
                                         @foreach($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            <option @if($role->slug == 'trainee')selected @endif  value="{{ $role->id }}">{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title', 'Announcement')
 @section('content')
-    <div class="container col-md-10 col-md-offset-2">
+    <div class="container col-md-12 col-md-offset-0">
         <div class="well well bs-component">
             <form class="form-horizontal" method="post" id="announcementform">
                 @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
                 @endif
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <fieldset>
-                    <legend align="center"><font color="#004D40" size="15"><i>Announcement</i></font></legend>
+                    <legend align="center"><font color="#004D40" size="15"><center><i>Announcement</i></center></font></legend>
                     <div class="form-group">
                         <label for="title" class="col-lg-2 control-label"><font color="#009688" size="3">Heading</font></label>
                         <div class="col-lg-10">
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
+                        <div class="col-lg-10 col-lg-offset-1" align="center">
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>

@@ -15,14 +15,7 @@
 
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <fieldset>
-                    <div ><center><h5>Bangladesh Academy for Rural Development<br/>
-                        Kotbari, Comilla</h5>
-                    <legend><u><h3>Information Sheet</h3></u><small>(For Trainers)</small></legend>
-                    <h4><b>Name of Training Course  : 3<sup>rd</sup> FTFL Foundation Training Course<br/>
-                        Participants                : FTFL Trainers of Bangladesh Computer Council<br/>
-                        Duration                    : 01 August - 29 October 2015</b></h4> </center>  <br/><br/>  <br/>    
-					</div>
-                        
+                                   
                             
                     <div class="form-group" >
                         <label class="col-lg-2 control-label">Name*:</label>
@@ -43,46 +36,36 @@
                     <div class="form-group">
                         <label for="eduQualification" class="col-lg-2 control-label">Educational Qualification</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" id="eduQualification" placeholder="Educational Qualification" name="educational_qualification">
+                            <input type="text" class="form-control" id="eduQualification" placeholder="Educational Qualification" name="educational_qualification"value="{{ old('educational_qualification')}}">
                         </div>
 					 </div>
 
-                    <div class="form-group">
-                        <label for="inputTrainingName" class="col-lg-2 control-label">Training Name:</label>
-                        <div class="col-lg-5">
-                            <select class="form-control" name="training_name">
-                                
-                                @foreach($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->course_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div> 
+                   
 					 <div class="form-group">
                         <label for="skillSet" class="col-lg-2 control-label">	Skill Set</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" id="skillSet" placeholder="Skill Set" name="skill_set">
+                            <input type="text" class="form-control" id="skillSet" placeholder="Skill Set" name="skill_set" value="{{ old('skill_set')}}">
                         </div>
 					 </div>	
 						
 						<div class="form-group">
                         <label for="preExperience" class="col-lg-2 control-label">Previous Experience</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" id="preExperience" placeholder="Previous Experience" name="previous_experience">
+                            <input type="text" class="form-control" id="preExperience" placeholder="Previous Experience" name="previous_experience" value="{{ old('previous_experience')}}">
                         </div>
                     </div>
                 
                     <div class="form-group">
                         <label for="dob" class="col-lg-2 control-label">Date of Birth</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" id="dob" placeholder="Date of Birth" name="date_of_birth">
+                            <input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="date_of_birth" value="{{ old('date_of-birth')}}">
                         </div>
                       </div>
 					
 					<div class="form-group">
                         <label for="cellNumber" class="col-lg-2 control-label">Cell Number</label>
                         <div class="col-lg-5">
-                            <input type="number" class="form-control" id="cellNumber" placeholder="Cell Number" name="cell_number">
+                            <input type="number" class="form-control" id="cellNumber" placeholder="Cell Number" name="cell_number" value="{{ old('cell_number')}}">
                         </div>
                       </div>
 
@@ -94,7 +77,7 @@
 					  <div class="form-group">
                         <label for="country" class="col-lg-2 control-label">Country</label>
                         <div class="col-lg-5">
-                            <input type="text" class="form-control" id="country" placeholder="Country" name="country">
+                            <input type="text" class="form-control" id="country" placeholder="Country" name="country" value="{{ old('country')}}">
                         </div>
                       </div>
 

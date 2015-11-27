@@ -12,6 +12,10 @@
             <div class="well">
                 <h3>To View Marks Sheet<br><a href="{!! URL::to('/clients/create_newsletter') !!}" class="btn btn-lg btn-info" style="background-color: #E91E63">Click Here</a></h3>
             </div>
+            <br>
+             <div class="well">
+                <h3>To View Health Information<br><a href="{!! URL::to('/trainingsCourse') !!}" class="btn btn-lg btn-info" style="background-color: #0000cd">Click Here</a></h3>
+            </div>
           </div>
             <div class="col-md-6">
               <div class="well">
@@ -72,11 +76,11 @@
             </div>
               <div class="col-md-3">
                   <div class="well">
-                      <h3>To Update Trainee Info forms<a href="{!! URL::to('/clients/create') !!}" class="btn btn-lg btn-info active" style="background-color: #e74c3c">Click Here</a></h3>
+                      <h3>To Update Trainee Info forms<a href="{!! URL::to('trainees') !!}" class="btn btn-lg btn-info active" style="background-color: #e74c3c">Click Here</a></h3>
                   </div>
                   <br>
                   <div class="well">
-                      <h3>To View Trainee Attendence<br><a href="{!! URL::to('/clients/create_newsletter') !!}" class="btn btn-lg btn-success active" style="background-color: #795548">Click Here</a></h3>
+                      <h3>To Add Trainee Attendence<br><a href="{!! URL::to('/attendance_preform') !!}" class="btn btn-lg btn-success active" style="background-color: #795548">Click Here</a></h3>
                   </div>
               </div>
           </div>

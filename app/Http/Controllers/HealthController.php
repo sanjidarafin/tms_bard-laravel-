@@ -20,7 +20,8 @@ class HealthController extends Controller
      */
     public function index()
     {
-        $healthInfos = HealthReport::all();
+        $id = Auth::user()->id;
+        $healthInfos = HealthReport::where('user_id','=',$id)->get();
         return view('health.index', compact('healthInfos'));
     }
 
@@ -44,6 +45,7 @@ class HealthController extends Controller
      */
     public function store(HealthFormRequest $request)
     {
+        $id = Auth::user()->id;
         $healthInfo = new HealthReport(array(
             'user_id' => Auth::user()->id,
             'present_address' => $request->get('present_address'),
@@ -75,9 +77,18 @@ class HealthController extends Controller
             'comments_mofficer' => $request->get('comments_mofficer'),
             
         ));
-        $healthExam->save();
-        $healthInfo->save();
-        return redirect('/healthInfos')->with('status', 'Your health information has been created!');
+     //dd($healthExam);
+        if (HealthReport::where('user_id', '=',$id)->exists() AND HealthExam::where('user_id', '=',$id)->exists()) {
+           return redirect('/UserHealthInfos')->with('status', 'You have already given your health information');
+        }
+        else{
+               $healthExam->save();
+               $healthInfo->save();
+            return redirect('/UserHealthInfos')->with('status', 'Your health information has been submitted!');
+        }
+        
+       
+        //return redirect('/UserHealthInfos')->with('status', 'Your health information has been created!');
         //print_r($healthInfo);
     }
 
@@ -91,7 +102,10 @@ class HealthController extends Controller
     {
         $healthInfo = HealthReport::whereUserId($id)->firstOrFail();
         $healthExam = HealthExam::whereUserId($id)->firstOrFail();
-        return view('health.show', compact('healthInfo','healthExam'));
+        
+        return view('health.show', compact('healthInfo','healthExam'))->with('id', $id);
+
+        
     }
 
     /**
@@ -104,6 +118,7 @@ class HealthController extends Controller
     {
         $healthInfo = HealthReport::whereUserId($id)->firstOrFail();
         $healthExam = HealthExam::whereUserId($id)->firstOrFail();
+       
         return view('health.edit', compact('healthInfo', 'healthExam'));
     }
 

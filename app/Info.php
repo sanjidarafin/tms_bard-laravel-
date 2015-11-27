@@ -10,7 +10,7 @@ class Info extends Model
      						'experience_year','date_of_birth','birth_place','join_date','guardians_name','village',
      						'post_office','sub_district','district','service_station','marital','ph_home','ph_office',
      						'ph_mobile','diseases','soprts','hobby','expertise','interested_game','height','weight','waist_abdomen',
-     						'chest','weight_end_course','course_id'];
+     						'chest','weight_end_course','filepath'];
     
     public function healthExam()
     {

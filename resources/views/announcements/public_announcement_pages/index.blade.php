@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container col-md-10 col-md-offset-2">
+    <div class="container col-md-12 col-md-offset-0">
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color: #4DB6AC; color: white;">
                 <h2> Announcements </h2>
@@ -26,7 +26,7 @@
                     @foreach($announcement as $announcement)
                         <tr>
                             <td>
-                                <a href="{!! action('AnnouncementController@publicShow', $announcement->id) !!}">{!! $announcement->heading !!} &nbsp;&nbsp; Publish on {!! $announcement->created_at !!} </a>
+                                <a href="{!! action('AnnouncementController@publicShow', $announcement->id) !!}"><font size="5">{!! $announcement->heading !!} &nbsp;&nbsp; Publish on {!! $announcement->created_at !!}</font> </a>
                             </td>
                         </tr>
                     @endforeach

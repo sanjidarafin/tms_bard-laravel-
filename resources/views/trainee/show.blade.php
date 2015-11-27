@@ -1,5 +1,5 @@
 @extends('master.trainee_master')
-@section('title','trainee')
+@section('title','Trainee')
 @section('content')
 	<section class="content-2" style="background-color: rgb(255, 255, 255);">
         <div class="container">
@@ -19,6 +19,9 @@
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <div class="well">
+                    	 @if($info == null)
+                        <h3> Details is not submitted yet!</h3>
+                      @else
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								
@@ -27,7 +30,7 @@
 							</div>
 							<div class="panel-body">
 								<div class="row">
-								
+										<div class="col-md-3 col-lg-5 " align="center"> <img src="{{ asset($info->filepath) }}" class="img-rounded img-responsive"> </div>
 									<div class=" col-md-9 col-lg-9 "> 
 										<table class="table table-user-information">
 											<tbody>
@@ -58,11 +61,6 @@
 													<td></td>
 												</tr>
 												<tr>
-													<td>Email:</td>
-													<td><a href="">tahmi@yahoo.com</a></td>
-													<td></td>
-												</tr>
-												<tr>
 													<td>Phone Number:</td>
 													<td>{!! $info->ph_mobile !!}</td>
 													<td></td>
@@ -80,9 +78,11 @@
 								</div>
 							</div>            
 						</div>
+						@endif
                     </div>	
                 </div>
                 <div class="col-md-3 col-lg-3">
+                    
                     <div class="well">
                         <h3>Registration<a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info"  style="background-color:#CE93D8">Fill The Form</a></h3>
 						<a href="{!! URL::to('/') !!}" class="btn btn-lg btn-info" style="background-color:#9C27B0">Edit The Form</a>
@@ -91,7 +91,7 @@
                     <br>
                     <div class="well">
                         <h3>Information Sheet<a href="{!! URL::to('/trainee_create') !!}" class="btn btn-lg btn-info" style="background-color:#69F0AE">Fill The Form</a></h3>
-						<a href="{!! action('InfosController@edit_profile', $info->slug) !!}" class="btn btn-lg btn-info" style="background-color:#00C853">Edit The Form</a>
+						<a href="{!! action('InfosController@edit_profile', $info->trainee_login_id) !!}" class="btn btn-lg btn-info" style="background-color:#00C853">Edit The Form</a>
                     </div>
 					
 					

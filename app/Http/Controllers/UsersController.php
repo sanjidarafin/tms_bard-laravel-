@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\UserRegistrationRequest;
+use App\Info;
 use App\Role_user;
+use App\Trainer;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -15,7 +17,10 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['not_allowed', 'redirection_page', 'show_user_registration_form', 'store_user_and_assign_role_to_them']]);
+
+
+        //$this->middleware('admin', ['except' => ['not_allowed', 'redirection_page']]);
+
     }
 
     public function redirection_page()
@@ -44,9 +49,9 @@ class UsersController extends Controller
 
     }
 
-    public function store_user_and_assign_role_to_them(Request $request)
+    public function store_user_and_assign_role_to_them(UserRegistrationRequest $request)
     {
-       $user = new User();
+        $user = new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password'));
@@ -83,7 +88,7 @@ class UsersController extends Controller
     public function all_user()
     {
         $user_details=[];
-        $users = User::all();
+        $users = User::orderBy('created_at', 'desc')->paginate(20);
         foreach($users as $user){
             $user_id = $user->id;
             $role_name = $this->role_name_by_user_id($user_id);
@@ -94,7 +99,7 @@ class UsersController extends Controller
                 'user_role' => $role_name
             ];
         }
-        return view('user.all_user')->with('user_details', $user_details);
+        return view('user.all_user')->with('user_details', $user_details)->with('users', $users);
     }
 
     public function delete_user($id)
@@ -124,5 +129,29 @@ class UsersController extends Controller
         $role_user->role_id = $request->get('role_id');
         $role_user->save();
         return redirect('user/all')->with('status', 'User info update successfully');
+    }
+
+    public function user_search(Request $request)
+    {
+        $search_term = $request->get('search_term');
+        if($search_term == "name"){
+           $name = $request->get('search_keyword');
+            $users = User::where('name', 'like', "%$name%")->orderBy('created_at', 'desc')->get();
+        }elseif($search_term == "email"){
+           $email = $request->get('search_keyword');
+            $users = User::where('email', 'like', $email)->get();
+        }
+        $user_details=[];
+        foreach($users as $user){
+            $user_id = $user->id;
+            $role_name = $this->role_name_by_user_id($user_id);
+            $user_details[] = [
+                'user_id' => $user->id,
+                'user_name' => $user->name,
+                'user_email' => $user->email,
+                'user_role' => $role_name
+            ];
+        }
+        return view('user.search_users')->with('user_details', $user_details)->with('users', $users);
     }
 }

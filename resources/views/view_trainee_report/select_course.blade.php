@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container">
+        <div class="row all_report">
+        <div class="col-sm-4">
+            <a style="background-color: #E91E63; color: #fff;" class="btn btn-square btn-lg btn-primary"  href="{!! URL::to('/trainingId/'. $trainingId->id) !!}"><i class="fa fa-comment"></i> Feedbacks</a>
+        </div>
+    </div>
 
         <h2> Courses </h2>
 
@@ -12,7 +17,7 @@
             <div class="row">
                 @foreach($courses as $course)
 
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <div class="course_gellary">
                             <div class="course_image">
                                 <img src="{!! asset($course->course_image) !!}" alt="Course Image">
@@ -28,5 +33,5 @@
         @endif
 
     </div>
-
+    
 @endsection

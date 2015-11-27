@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Testimonial;
+use App\FAQ;
 use DateTime;
 use Carbon;
 use App\Course;
@@ -157,7 +158,8 @@ class TrainingsController extends Controller
         $training = Training::whereid($id)->firstOrFail();
         $courses=Course::wheretraining_id($id)->get();
         $testimonials=Testimonial::wheretraining_id($id)->get();
-        return view('trainings.public_training_pages.show', compact('training'),compact('courses'))->with('testimonials',$testimonials);
+        $FAQs=FAQ::wheretraining_id($id)->get();
+        return view('trainings.public_training_pages.show', compact('training','courses','FAQs'))->with('testimonials',$testimonials);
     }
     /**
      * Show the form for editing the specified resource.
@@ -242,6 +244,7 @@ class TrainingsController extends Controller
     public function destroy($id)
     {
         $training = Training::whereid($id)->firstOrFail();
+        unlink($training->image_path);
         $training->delete();
         return redirect('/trainings')->with('status', 'The Training Information Has Been Deleted!');
     }

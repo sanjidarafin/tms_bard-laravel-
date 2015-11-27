@@ -24,8 +24,17 @@ class BardTrainerFormRequest extends Request
     public function rules()
     {
           return [
-        'name' => 'required|min:5',
+        'name' => 'required',
         'email' => 'required|email',
+        'gender'=>'required',
+        'educational_qualification'=>'required',
+        'previous_experience'=>'required',
+        'country'=>'required',
+        'description'=>'required',
+        'skill_set'=>'required',
+		  'date'=>'required',
+        
+
         
     ];
         

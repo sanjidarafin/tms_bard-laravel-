@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master_trainer/master')
 @section('content')<br>
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
@@ -19,7 +19,7 @@
 
                 <div class="form-group">
                     <label for="male">{{$trainee->name}}</label>
-                    <input type="number" name="{{$trainee->id}}" id="{{$trainee->name}}" class="form-control">
+                    <input type="number" name="{{$trainee->user_id}}" id="{{$trainee->name}}" class="form-control">
                 </div>
 
             @endforeach

@@ -25,8 +25,7 @@ class AttendanceFormRequest extends Request
     {
         return [        
             'course_id' => 'required',
-            'session' => 'required',
-            'date' => 'required | min:3'
+            'session' => 'required'
         ];
     }
 }

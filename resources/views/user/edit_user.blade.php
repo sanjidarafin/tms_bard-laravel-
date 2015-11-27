@@ -41,6 +41,7 @@
                                 <div class="col-md-6">
                                     <select name="role_id" id="select_user" class="form-control">
                                         @foreach($roles as $role)
+                                            <?php if($role->slug == "admin") continue ?>
                                             <option  value="{{ $role->id }}" <?php if($role_id == $role->id) echo 'selected'?>>{{ $role->name }}</option>
                                         @endforeach
                                     </select>

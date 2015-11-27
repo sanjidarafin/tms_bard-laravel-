@@ -12,16 +12,22 @@
 				@foreach ($errors->all() as $error)
 					<p class="alert alert-danger">{{ $error }}</p>
 				@endforeach
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
 				
                 <div class="form-group">
-                        <label for="inputCourseName" class="col-sm-4 control-label">Course Name:</label>
+                        <label for="inputCourseName" class="col-sm-4 control-label">Course Name: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="inputCourseName" name="course_name"  value="{{ old('course_name')}}" placeholder="Course Name">
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="inputIntroduction" class="col-sm-4 control-label">Introduction:</label>
+                        <label for="inputIntroduction" class="col-sm-4 control-label">Introduction: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <textarea class="form-control" rows="3" name="introduction" >{{{ Input::old('introduction') }}}</textarea>
                         </div>
@@ -35,7 +41,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="inputCourseContents" class="col-sm-4 control-label">Course Contents:</label>
+                        <label for="inputCourseContents" class="col-sm-4 control-label">Course Contents: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="inputCourseContents" name="course_contents" value="{{ old('course_contents')}}" placeholder="Course Contents">
                         </div>
@@ -56,7 +62,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="inputDuration" class="col-sm-4 control-label">Duration:</label>
+                        <label for="inputDuration" class="col-sm-4 control-label">Duration: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="inputDuration" name="duration" value="{{ old('duration')}}" placeholder="Duration">
                         </div>
@@ -70,7 +76,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="inputCourseFee" class="col-sm-4 control-label">Course Fee:</label>
+                        <label for="inputCourseFee" class="col-sm-4 control-label">Course Fee: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="inputCourseFee" name="course_fee" value="{{ old('course_fee')}}" placeholder="Course Fee">
                         </div>
@@ -107,7 +113,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="inputTrainingName" class="col-sm-4 control-label">Training Name:</label>
+                        <label for="inputTrainingName" class="col-sm-4 control-label">Training Name: <span style="color: red">*</span></label>
                         <div class="col-sm-8">
                             <select class="form-control" name="training_id">
                              

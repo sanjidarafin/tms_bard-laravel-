@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master_trainer/master')
 @section('content')<br>
 <div class="container col-md-8 col-md-offset-2">
     <h1 style="text-align: center;">Exam List</h1>

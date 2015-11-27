@@ -1,4 +1,4 @@
-@extends('master/master')
+@extends('master.trainee_master')
 @section('content')
 <br>
     <div class="container">
@@ -86,11 +86,11 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('telephone', 'Telephone:')!!}
-                                {!! Form::text('telephone', null, array('class' => 'form-control')) !!}
+                                {!! Form::number('telephone', null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('fax', 'Fax:')!!}
-                                {!! Form::text('fax', null, array('class' => 'form-control')) !!}
+                                {!! Form::number('fax', null, array('class' => 'form-control')) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('e-mail', 'E-mail:')!!}<span style="color: red">*</span>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="form-group">
                                 {!! Form::label('mobile', 'Mobile:')!!}<span style="color: red">*</span>
-                                {!! Form::text('mobile', null, array('class' => 'form-control')) !!}
+                                {!! Form::number('mobile', null, array('class' => 'form-control')) !!}
                             </div>
 
                             <h3>Educational Qualification</h3><small>last  one Degree</small>
@@ -147,7 +147,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('contact_person_tel', 'Telephone/Mobile:')!!}<span style="color: red">*</span>
-                            {!! Form::text('contact_person_tel', null, array('class' => 'form-control')) !!}
+                            {!! Form::number('contact_person_tel', null, array('class' => 'form-control')) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('participant_rel', 'Relation with the Participant:')!!}

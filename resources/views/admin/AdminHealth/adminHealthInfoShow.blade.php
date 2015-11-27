@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin_master')
+@extends('admin.layouts.master')
 @section('script')
     <link href="{!! asset('css/datepicker.css') !!}" rel="stylesheet">
     <script src="{!! asset('js/bootstrap-datepicker.js') !!}"></script>
@@ -189,12 +189,6 @@
                         <div>
                             <h4><b>{!! $healthExam->comments_mofficer !!}</b></h4>
                         </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-9 col-md-offset-3">
-                        <a href="{!! action('AdminController@edit', $healthInfo->user_id) !!}" class="btn btn-info pull-left">Edit</a>
                     </div>
                 </div>
                 <!--end health exam-->

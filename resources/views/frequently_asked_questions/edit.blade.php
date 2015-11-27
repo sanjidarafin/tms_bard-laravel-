@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('title', 'View FAQS')
 @section('content')
-    <div class="container col-md-10 col-md-offset-2">
+    <div class="container col-md-12 col-md-offset-0">
         <div class="well well bs-component" style="background-color: #43A047; color:white; font-size:larger" align="center"><h1>Frequently Asked Questions</br>(FAQs)</h1></div>
         <div class="well well bs-component">
             <form class="form-horizontal" method="post">
@@ -29,12 +29,12 @@
                                     @foreach($trainings as $training)
                                         <option value="{!! $training->id !!}">{!!$training->training_name!!}</option>
                                     @endforeach
-								</select>
-								</br>
-								</br>
-							</div>
-						</div>
-					</div>
+                                </select>
+                                </br>
+                                </br>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="author" class="col-lg-2 control-label"><font color="#009688" size="3">Author Name</font></label>
                         <div class="col-lg-10">
@@ -50,18 +50,17 @@
                     </div>
                     <div class="form-group">
                         <label for="content" class="col-lg-2 control-label"><font color="#009688" size="3">Answer</font></label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="answer" placeholder="Answer" name="answer">{!! $faqs->answer !!}</textarea>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" rows="4" id="answer" placeholder="Answer" name="answer">{!! $faqs->answer !!}</textarea>
 
-                            </div>
+                        </div>
                     </div>
 
-                        <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
-                                <button class="btn btn-info">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-1" align="center">
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
+                    </div>
                 </fieldset>
             </form>
         </div>

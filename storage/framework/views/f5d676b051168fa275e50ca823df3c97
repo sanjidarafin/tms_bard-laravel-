@@ -29,9 +29,15 @@
                     <h4><b><br>3rd FTFL Foundation Training Course<br></b></h4>
                 </div>
                 <br>
+                
+                <div class="form-group">
+                       
+                        <label for="title" class="col-lg-2 control-label">Participants: </label>
+                        <h4><b>FTFL Trainees of Bangladesh Computer Council</b></h4>
+                    </div>
 
                 <div class="form-group">
-                    <br>
+                    
                     <label for="title" class="col-lg-2 control-label">Duration: </label>
                     <h4><b>01 August-29 October 2015</b></h4>
                 </div>
@@ -51,12 +57,15 @@
 
                 </div>
             <?php endif; ?>
+            
+            
+            
             <form id="contactForm" class="form-horizontal" method="post">
                 <!-- #messages is where the messages are placed inside -->
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
                 <div class="form-group">
-                    <label class="col-md-3 control-label"><h4 align ="left">ID Code:</h4></label>
+                    <label class="col-md-3 control-label"><h4><b>ID Code:</b></h4></label>
                     <div class="col-md-6">
                         <h4><b><?php echo $healthInfo->user_id; ?></b></h4>
                     </div>

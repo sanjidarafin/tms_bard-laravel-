@@ -1,17 +1,42 @@
 <?php $__env->startSection('title', 'View all courses'); ?>
 <?php $__env->startSection('content'); ?>
+    <style>
+        .all_report  i.fa {
+            display: block;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+        .all_report .col-sm-3 {
+            margin-bottom: 20px;
+        }
+
+        .btn-square{
+            width: 12em;
+            height: 12em;
+        }
+        .btn-square a span{
+            display: block;
+        }
+    </style>
 
     <div class="container">
-
-        <h2> Trainings </h2>
+        <div class="row all_report">
+            <div class="col-sm-3">
+                <a class="btn btn-square btn-lg btn-primary"  href="<?php echo e(URL::to('admin/yearly_report')); ?>"><i class="fa fa-newspaper-o"></i> <span>Yearly Report</span></a>
+            </div>
+        </div>
+        <hr>
+        <h2>Report As per Training</h2>
 
         <?php if($trainings->isEmpty()): ?>
             <p> There is no training available.</p>
         <?php else: ?>
+            <br><br>
             <div class="row">
                 <?php foreach($trainings as $training): ?>
 
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <div class="course_gellary">
                             <div class="course_image">
                                 <img src="<?php echo e($training->image_path); ?>" alt="Training Image">
@@ -27,6 +52,6 @@
         <?php endif; ?>
 
     </div>
-
+ 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin/layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

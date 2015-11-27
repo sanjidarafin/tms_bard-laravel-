@@ -10,6 +10,11 @@ use App\Http\Requests\AnnouncementFormRequest;
 
 class AnnouncementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['only' => ['index', 'store','show','edit','update','destroy','announcement']]);//for selected multiple files
+        //$this->middleware('auth',['except'=>'index']);
+    }
     /**
      * Display a listing of the resource.
      *

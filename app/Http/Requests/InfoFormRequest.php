@@ -24,8 +24,8 @@ class InfoFormRequest extends Request
     public function rules()
     {
          return [
-        'name' => 'required|min:5',
-        'trainee_id' => 'required|min:1',
+        'name' => 'required',
+        'trainee_id' => 'required',
         
         
     ];

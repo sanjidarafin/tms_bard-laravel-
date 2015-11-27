@@ -10,7 +10,7 @@ class Feedback extends Model
     
     public function trainer()
     {
-        return $this->belongsTo('App\Trainer');
+        return $this->belongsTo('App\User');
     }
     
     public function trainee()

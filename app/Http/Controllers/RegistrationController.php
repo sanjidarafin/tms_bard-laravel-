@@ -7,6 +7,7 @@ use App\Educations;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,8 +16,8 @@ class RegistrationController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('admin', ['except' => 'index']);
-//        $this->middleware('trainee', ['only' => ['create']]);
+        $this->middleware('admin', ['only' => ['index','show']]);
+        $this->middleware('trainee', ['except' => ['index','show']]);
     }
     /**
      * Display a listing of the resource.
@@ -98,14 +99,14 @@ class RegistrationController extends Controller
         $regData->participant_rel=$input['participant_rel'];
         $regData->img_path=$input['img_path'];
         $regData->edu_id=$lastEduId;
-        $regData->user_id=1;
+        $regData->user_id=Auth::user()->id;
         $regData->save();
 
 
 
 
 
-        return redirect()->intended('registration/create');
+        return redirect()->intended('trainee')->with('status', 'Create Success!');
 
     }
 
@@ -117,7 +118,8 @@ class RegistrationController extends Controller
      */
     public function show($id)
     {
-        return view('registration/show');
+        $data=Registration::whereid($id)->firstOrFail();
+        return view('registration/show',compact('data'));
     }
 
     /**
@@ -188,8 +190,8 @@ class RegistrationController extends Controller
         DB::table('educations')
             ->where('id', $regData->edu_id)
             ->update(['name_of_degree' => $request->name_of_degree,'subject' => $request->subject,'Year' => $request->Year,'board' => $request->board]);
-
-        return redirect()->intended('registration');
+        return redirect()->intended('trainee')->with('status', 'Update Success!');
+        //return redirect()->intended('registration');
     }
 
     /**
@@ -212,13 +214,22 @@ class RegistrationController extends Controller
         $path="reg_img";
         if($validate)
         {
+            $ImageExtensions = array('jpg', 'png', 'jpeg','gif','tif','tiff','bmp');
+
             $imageOriginalName=$Image->getClientOriginalName();//get image full name
             $basename = substr($imageOriginalName, 0, strrpos($imageOriginalName, "."));//get image name without extension
             $basename=str_replace(" ", "", $basename);
             $extension =$Image->getClientOriginalExtension();//get image extension only
-            $imageName=$basename.date("YmdHis").'.'.$extension;//make new name
 
-            $imageMoved=$Image->move($path, $imageName);
+            if (in_array($extension, $ImageExtensions)) {
+
+                $imageName = $basename . date("YmdHis") . '.' . $extension;//make new name
+
+                $imageMoved = $Image->move($path, $imageName);
+            }
+            else{
+                return redirect()->intended('trainee')->with('status', 'Data not Inserted. Please give a image !');
+            }
             if($imageMoved)
             {
                 $imagePath=$path.'/'.$imageName;

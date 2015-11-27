@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Role_user;
 use App\Training;
 use App\User;
 use App\UserTraining;
+use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -39,28 +41,29 @@ class UserTrainingController extends Controller
     public function create()
     {
         $training = Training::lists('training_name', 'id');
-        /*$trainees=DB::table('users as t1')
-            ->join('user_traininginfo as t2','t1.id','=','t2.user_id')
-            ->select('t1.name','t1.id','t1.email')
-            ->where('t1.id','!=','t2.user_id')
-            ->get();*/
+
         $trainees = User::lists('id', 'name');
+        $role = Role::where('slug','LIKE','trainee')->first();
         //dd($trainees);
         $newTrainees = array();
         $test = "";
         foreach ($trainees as $traineesName => $traineeId) {
-
-            //$newTrainees++;
-            $traineeHas = UserTraining::whereuser_id($traineeId)->first();
-            if ($traineeHas == true) {
-                $test++;
-            }else{
-                array_push($newTrainees,$traineeId);
+            $listOfTraineesInRoleTable=Role_user::whereuser_id($traineeId)->firstOrFail();
+            if($listOfTraineesInRoleTable->role_id==$role->id) {
+                $traineeHas = UserTraining::whereuser_id($traineeId)->first();
+                if ($traineeHas == true) {
+                    $test++;
+                } else {
+                    array_push($newTrainees, $traineeId);
+                }
+            }
+            else{
+                continue;
             }
         }
         //print_r($newTrainees);
 
-        return view('user_traininginfo/create',compact('training','trainees','newTrainees'));
+        return view('user_traininginfo/create',compact('training','trainees','newTrainees','listOfTraineeInRoleTable'));
     }
 
     /**

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,10 +12,6 @@ use App\Training;
 use Illuminate\Support\Facades\Validator;
 class CourseController extends Controller
 {
-    public function __construct()
-    {
-       $this->middleware('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'show']]);
-    }
      /**
      * Display a listing of the resource.
      *
@@ -52,7 +47,7 @@ class CourseController extends Controller
             $Image = $this->imageUpload($input);
         }
         else{
-            $Image = "course_img/images.jpg";
+            $Image = "course_img/default.jpg";
         }
 
 
@@ -77,7 +72,7 @@ class CourseController extends Controller
     ));
     $course->save();
     $id=$request->get('id');
-    return redirect('/courses')->with('Your course has been created!');
+    return redirect('/create_course')->with('status','Your course has been created!');
    
 
     }
@@ -160,7 +155,7 @@ class CourseController extends Controller
     
         
         $courses->save();
-        return redirect(action('CourseController@index', $courses->id))->with( 'The course '.$id.' has been updated!');
+        return redirect(action('CourseController@edit', $courses->id))->with('status', 'The course has been updated!');
 
     }
 

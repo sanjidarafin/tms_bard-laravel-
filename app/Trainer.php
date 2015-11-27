@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Trainer extends Model
 {
-     protected $fillable = ['name','gender','educational_qualification', 'previous_experience', 'date_of_birth','cell_number','email','country','filePath','skill_set','slug','status','courses','course_id','trainer_id'];
+     protected $fillable = ['name','gender','educational_qualification', 'previous_experience', 'date_of_birth','cell_number','email','country','filePath','skill_set','slug','status','trainer_id'];
     
     
     public function courses()
@@ -20,8 +20,7 @@ class Trainer extends Model
         return $this->hasMany('App\Feedback');
     }
 
-
-     public function trainers()
+    public function trainers()
     {
         return $this->belongsTo('App\User','trainer_id');
     }

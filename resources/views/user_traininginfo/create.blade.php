@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('admin/layouts/master')
 @section('content')
     <div class="container col-md-8 col-md-offset-2">
         <center><h1>Training Trainee Relationship</h1></center>
@@ -15,7 +15,7 @@
             {!! Form::open(['route'=>'user_traininginfo.store'])!!}
 
             <div class="form-group">
-                {!! Form::label('training_id','training_name')!!}
+                {!! Form::label('training_id','Training Name')!!}
                 {!! Form::select('training_id', $training, null,['class' => 'form-control'])!!}
             </div>
             <div class="form-group">

@@ -123,7 +123,7 @@
                                     <h3>No Announcements </h3>
                                 <?php else: ?>
                                     <?php foreach($announcement as $announcement): ?>
-                                        <a href="<?php echo action('AnnouncementController@show', $announcement->id); ?>"><?php echo $announcement->heading; ?> &nbsp;&nbsp; Published on <?php echo $announcement->created_at; ?> </a><br>
+                                        <a href="<?php echo action('AnnouncementController@publicShow', $announcement->id); ?>"><?php echo $announcement->heading; ?> &nbsp;&nbsp; Published on <?php echo $announcement->created_at; ?> </a><br>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </div>
@@ -167,7 +167,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -205,7 +204,25 @@
                     </div>
                 </div>
             </div>
+            
+        </div>
+    </section>
+    <section class="" id="features1-7" style="background-color: rgb(255, 255, 255);">
+        <div class="container">
+            <div class="row">
+                <br><br>
+                <h2 class="mbr-section__header">Our Clients</h2><br><br>
+                <?php foreach($clients as $client): ?>
+                    <div class="col-sm-2 col-xs-4" >
+                        <img class="img-responsive img-thumbnail"  src="<?php echo e(asset ('uploads/'.$client->client_logo)); ?>">
+                    </div>
+                <?php endforeach; ?>
+                <br><br>
+            </div>
+            <br><br>
         </div>
     </section>
 <?php $__env->stopSection(); ?>
+
+
 <?php echo $__env->make('master/master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -14,11 +14,12 @@ class FrequentlyAskedQuestions extends Migration
     {
         Schema::create('FAQs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('training_id');
+            $table->integer('training_id')->unsigned();
             $table->text('question');
             $table->text('answer');
             $table->string('author_name');
             $table->timestamps();
+            $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
         });
     }
 

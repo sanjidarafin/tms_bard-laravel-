@@ -9,13 +9,14 @@ use App\TrainerCourse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TrainerCourseController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('admin', ['except' => 'index']);
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +25,9 @@ class TrainerCourseController extends Controller
      */
     public function index()
     {
-        $trainersList=Trainer::lists('name','id');
+        $trainersList=DB::table('users')
+            ->leftjoin('role_user','users.id','=','role_user.user_id')
+            ->where('role_user.role_id',2)->select('users.id as id','users.name as name')->lists('name','id');
         $courses=Course::lists('course_name','id');
 
         $trainers=TrainerCourse::all();
@@ -39,7 +42,12 @@ class TrainerCourseController extends Controller
      */
     public function create()
     {
-        $trainers=Trainer::lists('name','id');
+        $trainers=$trainees = DB::table('users')
+            ->leftjoin('role_user','users.id','=','role_user.user_id')
+            ->where('role_user.role_id',2)->select('users.id as id','users.name as name')->lists('name','id');
+        //return $trainers;
+        //$trainers=Trainer::lists('name','id');
+
         $courses=Course::lists('course_name','id');
         return view('TrainerCoursesRelation.create',compact('trainers','courses'));
     }
@@ -52,15 +60,19 @@ class TrainerCourseController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $trainer_course=new TrainerCourse(
+                array(
+                    'trainer_id'=>$request->get('trainer_rel'),
+                    'course_id'=>$request->get('course_rel')
+                )
+            );
+            $trainer_course->save();
+        } catch(\Exception $e) {
+            return redirect('trainer_course')->with('status','This data insert already');
+        }
 
-        $trainer_course=new TrainerCourse(
-            array(
-                'trainer_id'=>$request->get('trainer_rel'),
-                'course_id'=>$request->get('course_rel')
-            )
 
-        );
-        $trainer_course->save();
         return redirect('trainer_course')->with('status','Trainer & Course created successfully');
     }
 
@@ -84,7 +96,9 @@ class TrainerCourseController extends Controller
     public function edit($id)
     {
         $trainer_course=TrainerCourse::whereid($id)->firstOrfail();
-        $trainers=Trainer::lists('name','id');
+        $trainers=DB::table('users')
+            ->leftjoin('role_user','users.id','=','role_user.user_id')
+            ->where('role_user.role_id',2)->select('users.id as id','users.name as name')->lists('name','id');
         $courses=Course::lists('course_name','id');
         return view('TrainerCoursesRelation.edit',compact('trainer_course','trainers','courses'));
     }

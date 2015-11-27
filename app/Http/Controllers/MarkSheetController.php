@@ -8,10 +8,16 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class MarkSheetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('trainer');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +25,8 @@ class MarkSheetController extends Controller
      */
     public function index()
     {
-        $exams=Exam::all();
+
+        $exams=Exam::whereadmin_id(Auth::user()->id)->get();
         return view('marksheet/index',compact('exams'));
     }
 
@@ -42,25 +49,29 @@ class MarkSheetController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $input=Input::all();
         $examId=$request->examId;
+        $courseId = exam::where('id', '=', $examId)->pluck('course_id');
+        //dd($courseId);
         foreach($input as $traineeId=>$mark){
             if($traineeId==0 or $mark==0) {
                 continue;
             }else{
-                $this->insertMarks($mark, $traineeId, $examId);
+                $this->insertMarks($mark, $traineeId, $examId,$courseId);
             }
         }
         return redirect('/marksheet')->with('status','Mark Insert successfully');
 
 
     }
-    private function insertMarks($mark,$traineeId,$examId)
+    private function insertMarks($mark,$traineeId,$examId,$courseId)
     {
         $markIn=new Marksheet();
         $markIn->trainee_id=$traineeId;
         $markIn->mark=$mark;
         $markIn->exam_id=$examId;
+        $markIn->course_id=$courseId;
         $markIn->save();
 
     }
@@ -85,7 +96,8 @@ class MarkSheetController extends Controller
     public function edit($id)
     {
         $marksheet=Marksheet::whereid($id)->firstOrfail();
-        return view('marksheet/edit',compact('marksheet'));
+        $traineeName = User::where('id', '=', $marksheet->trainee_id)->pluck('name');
+        return view('marksheet/edit',compact('marksheet','traineeName'));
     }
 
     /**
@@ -101,7 +113,7 @@ class MarkSheetController extends Controller
         //$marksheet->trainee=$request->get('trainee');
         $marksheet->mark=$request->get('mark');
         $marksheet->save();
-        return redirect('listOfstudentsAndMarks')->with('status','updated successfully');
+        return redirect('listOfstudentsAndMarks/'.$marksheet->course_id)->with('status','updated successfully');
     }
 
     /**
@@ -114,19 +126,34 @@ class MarkSheetController extends Controller
     {
         $marksheet=Marksheet::whereid($id)->firstOrfail();
         $marksheet->delete();
-        return redirect('/listOfstudentsAndMarks')->with('status','Deleted successfully');
+        return redirect('listOfstudentsAndMarks/'.$marksheet->course_id)->with('status','Deleted successfully');
     }
 
-    public function getTrainee($examId)
+    public function getTrainee($examId,$course_id)
     {
         //dd($examId);
-        $trainees=User::all();
+        $trainees = DB::table('users')
+            ->join('role_user','users.id','=','role_user.user_id')
+            ->join('traineecourses','role_user.user_id','=','traineecourses.trainee_id')
+            ->where('role_user.role_id',3)
+            ->where('traineecourses.course_id',$course_id)->get();
+        //$trainees=User::all();
+        //dd($trainees);
         return view('marksheet/create',compact('trainees','examId'));
     }
 
-    public function listOfstudentsAndMarks()
+    public function listOfstudentsAndMarks($courseId)
     {
-        $marksheets=Marksheet::all();
+//        dd($courseId);
+        $marksheets = DB::table('marksheets')
+            ->join('users','marksheets.trainee_id','=','users.id')
+            ->join('role_user','marksheets.trainee_id','=','role_user.user_id')
+            ->select('marksheets.id','marksheets.course_id','marksheets.exam_id','marksheets.trainee_id','marksheets.mark','users.name')
+            ->where('role_user.role_id',3)
+            ->where('marksheets.course_id',$courseId)
+            ->get();
+        //dd($marksheets);
+        //$marksheets=Marksheet::all();
         $exams=Exam::all();
         return view('marksheet/listOfstudentsAndMarks',compact('marksheets','exams'));
     }

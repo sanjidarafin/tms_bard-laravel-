@@ -27,6 +27,7 @@
 <?php echo $__env->yieldContent('slider'); ?>
 <?php echo $__env->yieldContent('content'); ?>
 <?php echo $__env->yieldContent('testimonials'); ?>
+<?php echo $__env->yieldContent('clients_logo'); ?>
 
 <script src="<?php echo asset('assets/jquery/jquery.min.js'); ?>"></script>
 <script src="<?php echo asset('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>

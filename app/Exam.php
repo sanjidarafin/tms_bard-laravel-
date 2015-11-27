@@ -10,5 +10,8 @@ class Exam extends Model
     protected $fillable=['title','exam_description','exam_date','exam_mark'];
 
 
-
+    public function marks()
+    {
+        return $this->hasMany('App\Marksheet');
+    }
 }

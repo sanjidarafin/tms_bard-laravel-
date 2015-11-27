@@ -16,10 +16,16 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="<?php echo e((strcmp(URL::full(), URL::to('/trainee')) == 0) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/trainee')); ?>" class="">HOME</a></li>
                 <li class="<?php echo e((strpos(URL::current(), URL::to('feedbackCreate'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/feedbackCreate')); ?>" class="">FEEDBACKS</a></li>
-                <li class="<?php if(isset($about)): ?>active <?php endif; ?>"><a href="<?php echo e(URL::to('/about')); ?>" class="">REGISTRATION</a></li>
-                <li class="<?php echo e((strpos(URL::current(), URL::to('healthCreate'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/healthCreate')); ?>" class="">HEALTHINFOS</a> </li>
+
+                
+                <li class="<?php echo e((strpos(URL::current(), URL::to('UserHealthCreate'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/UserHealthCreate')); ?>" class="">HEALTHINFOS</a> </li>
+
+                <li class="<?php if(isset($about)): ?>active <?php endif; ?>"><a href="<?php echo e(URL::to('/registration')); ?>" class="">REGISTRATION</a></li>
+                <?php /*<li class="<?php if(isset($about)): ?>active <?php endif; ?>"><a href="<?php echo e(URL::to('/registration/'.Auth::user()->id.'/edit')); ?>" class="">REGISTRATION</a></li>*/ ?>
+
                 <li class="<?php echo e((strpos(URL::current(), URL::to('trainee_create'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/trainee_create')); ?>" class="">INFORMATION</a> </li>
-                <li class="<?php echo e((strpos(URL::current(), URL::to('logout'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/logout')); ?>" class="">LOGOUT</a> </li>
+                <li class="<?php echo e((strpos(URL::current(), URL::to('/forums'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/forums')); ?>" class="">FORUMS</a> </li>
+                <li class="<?php echo e((strpos(URL::current(), URL::to('logout'))!== false) ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('/auth/logout')); ?>" class="">LOGOUT</a> </li>
 
             </ul>
         </div>

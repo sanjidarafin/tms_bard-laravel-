@@ -31,7 +31,7 @@
 
                                     <select class="form-control" name="trainer_id" id="sel1">
                                        <?php foreach($trainers as $trainer): ?>
-                                        <option value="<?php echo e($trainer->id); ?>"><?php echo e($trainer->name); ?></option>
+                                        <option value="<?php echo e($trainer->trainer_id); ?>"><?php echo e($trainer->name); ?></option>
                                         <?php endforeach; ?>
                                     </select>
 
